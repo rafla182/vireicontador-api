@@ -1,0 +1,691 @@
+{
+  "format": 1,
+  "restore": {
+    "D:\\projetos\\detalp-api\\DeltaP.API\\App\\DeltaP.API\\DeltaP.API.csproj": {}
+  },
+  "projects": {
+    "D:\\projetos\\detalp-api\\DeltaP.API\\App\\DeltaP.API\\DeltaP.API.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\projetos\\detalp-api\\DeltaP.API\\App\\DeltaP.API\\DeltaP.API.csproj",
+        "projectName": "DeltaP.API",
+        "projectPath": "D:\\projetos\\detalp-api\\DeltaP.API\\App\\DeltaP.API\\DeltaP.API.csproj",
+        "packagesPath": "C:\\Users\\rafae\\.nuget\\packages\\",
+        "outputPath": "D:\\projetos\\detalp-api\\DeltaP.API\\App\\DeltaP.API\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\rafae\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp2.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp2.1": {
+            "projectReferences": {
+              "D:\\projetos\\detalp-api\\DeltaP.API\\Contexts\\DeltaP.API.Authorize\\DeltaP.API.Autorizacao.csproj": {
+                "projectPath": "D:\\projetos\\detalp-api\\DeltaP.API\\Contexts\\DeltaP.API.Authorize\\DeltaP.API.Autorizacao.csproj"
+              },
+              "D:\\projetos\\detalp-api\\DeltaP.API\\Contexts\\DeltaP.API.Dashboard\\DeltaP.API.Dashboard.csproj": {
+                "projectPath": "D:\\projetos\\detalp-api\\DeltaP.API\\Contexts\\DeltaP.API.Dashboard\\DeltaP.API.Dashboard.csproj"
+              },
+              "D:\\projetos\\detalp-api\\DeltaP.API\\Contexts\\DeltaP.API.Empresas\\DeltaP.API.Empresas.csproj": {
+                "projectPath": "D:\\projetos\\detalp-api\\DeltaP.API\\Contexts\\DeltaP.API.Empresas\\DeltaP.API.Empresas.csproj"
+              },
+              "D:\\projetos\\detalp-api\\DeltaP.API\\Contexts\\DeltaP.API.Movimentacao\\DeltaP.API.Movimentacoes.csproj": {
+                "projectPath": "D:\\projetos\\detalp-api\\DeltaP.API\\Contexts\\DeltaP.API.Movimentacao\\DeltaP.API.Movimentacoes.csproj"
+              },
+              "D:\\projetos\\detalp-api\\DeltaP.API\\Contexts\\DeltaP.API.Parametros\\DeltaP.API.Parametros.csproj": {
+                "projectPath": "D:\\projetos\\detalp-api\\DeltaP.API\\Contexts\\DeltaP.API.Parametros\\DeltaP.API.Parametros.csproj"
+              },
+              "D:\\projetos\\detalp-api\\DeltaP.API\\Contexts\\DeltaP.API.User\\DeltaP.API.User.csproj": {
+                "projectPath": "D:\\projetos\\detalp-api\\DeltaP.API\\Contexts\\DeltaP.API.User\\DeltaP.API.User.csproj"
+              },
+              "D:\\projetos\\detalp-api\\DeltaP.API\\Contexts\\DeltaP.API.Vendedores\\DeltaP.API.Vendedores.csproj": {
+                "projectPath": "D:\\projetos\\detalp-api\\DeltaP.API\\Contexts\\DeltaP.API.Vendedores\\DeltaP.API.Vendedores.csproj"
+              },
+              "D:\\projetos\\detalp-api\\DeltaP.API\\Shared\\DeltaP.API.Infra\\DeltaP.API.Infra.csproj": {
+                "projectPath": "D:\\projetos\\detalp-api\\DeltaP.API\\Shared\\DeltaP.API.Infra\\DeltaP.API.Infra.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp2.1": {
+          "dependencies": {
+            "Microsoft.AspNetCore.App": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.1.1, )",
+              "autoReferenced": true
+            },
+            "Microsoft.AspNetCore.Razor.Design": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.1.2, )"
+            },
+            "Microsoft.NETCore.App": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.1.0, )",
+              "autoReferenced": true
+            },
+            "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
+              "target": "Package",
+              "version": "[2.1.9, )"
+            },
+            "Swashbuckle.AspNetCore": {
+              "target": "Package",
+              "version": "[4.0.1, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.0.100\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "D:\\projetos\\detalp-api\\DeltaP.API\\Contexts\\DeltaP.API.Authorize\\DeltaP.API.Autorizacao.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\projetos\\detalp-api\\DeltaP.API\\Contexts\\DeltaP.API.Authorize\\DeltaP.API.Autorizacao.csproj",
+        "projectName": "DeltaP.API.Autorizacao",
+        "projectPath": "D:\\projetos\\detalp-api\\DeltaP.API\\Contexts\\DeltaP.API.Authorize\\DeltaP.API.Autorizacao.csproj",
+        "packagesPath": "C:\\Users\\rafae\\.nuget\\packages\\",
+        "outputPath": "D:\\projetos\\detalp-api\\DeltaP.API\\Contexts\\DeltaP.API.Authorize\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\rafae\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp2.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp2.1": {
+            "projectReferences": {
+              "D:\\projetos\\detalp-api\\DeltaP.API\\Contexts\\DeltaP.API.Empresas\\DeltaP.API.Empresas.csproj": {
+                "projectPath": "D:\\projetos\\detalp-api\\DeltaP.API\\Contexts\\DeltaP.API.Empresas\\DeltaP.API.Empresas.csproj"
+              },
+              "D:\\projetos\\detalp-api\\DeltaP.API\\Shared\\DeltaP.API.Infra\\DeltaP.API.Infra.csproj": {
+                "projectPath": "D:\\projetos\\detalp-api\\DeltaP.API\\Shared\\DeltaP.API.Infra\\DeltaP.API.Infra.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp2.1": {
+          "dependencies": {
+            "JsonWebTokens": {
+              "target": "Package",
+              "version": "[3.0.0, )"
+            },
+            "Microsoft.AspNetCore.Http.Abstractions": {
+              "target": "Package",
+              "version": "[2.1.1, )"
+            },
+            "Microsoft.NETCore.App": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.1.0, )",
+              "autoReferenced": true
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.0.100\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "D:\\projetos\\detalp-api\\DeltaP.API\\Contexts\\DeltaP.API.Dashboard\\DeltaP.API.Dashboard.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\projetos\\detalp-api\\DeltaP.API\\Contexts\\DeltaP.API.Dashboard\\DeltaP.API.Dashboard.csproj",
+        "projectName": "DeltaP.API.Dashboard",
+        "projectPath": "D:\\projetos\\detalp-api\\DeltaP.API\\Contexts\\DeltaP.API.Dashboard\\DeltaP.API.Dashboard.csproj",
+        "packagesPath": "C:\\Users\\rafae\\.nuget\\packages\\",
+        "outputPath": "D:\\projetos\\detalp-api\\DeltaP.API\\Contexts\\DeltaP.API.Dashboard\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\rafae\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp2.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp2.1": {
+            "projectReferences": {
+              "D:\\projetos\\detalp-api\\DeltaP.API\\Contexts\\DeltaP.API.Authorize\\DeltaP.API.Autorizacao.csproj": {
+                "projectPath": "D:\\projetos\\detalp-api\\DeltaP.API\\Contexts\\DeltaP.API.Authorize\\DeltaP.API.Autorizacao.csproj"
+              },
+              "D:\\projetos\\detalp-api\\DeltaP.API\\Contexts\\DeltaP.API.Movimentacao\\DeltaP.API.Movimentacoes.csproj": {
+                "projectPath": "D:\\projetos\\detalp-api\\DeltaP.API\\Contexts\\DeltaP.API.Movimentacao\\DeltaP.API.Movimentacoes.csproj"
+              },
+              "D:\\projetos\\detalp-api\\DeltaP.API\\Shared\\DeltaP.API.Infra\\DeltaP.API.Infra.csproj": {
+                "projectPath": "D:\\projetos\\detalp-api\\DeltaP.API\\Shared\\DeltaP.API.Infra\\DeltaP.API.Infra.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp2.1": {
+          "dependencies": {
+            "Microsoft.NETCore.App": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.1.0, )",
+              "autoReferenced": true
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.0.100\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "D:\\projetos\\detalp-api\\DeltaP.API\\Contexts\\DeltaP.API.Empresas\\DeltaP.API.Empresas.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\projetos\\detalp-api\\DeltaP.API\\Contexts\\DeltaP.API.Empresas\\DeltaP.API.Empresas.csproj",
+        "projectName": "DeltaP.API.Empresas",
+        "projectPath": "D:\\projetos\\detalp-api\\DeltaP.API\\Contexts\\DeltaP.API.Empresas\\DeltaP.API.Empresas.csproj",
+        "packagesPath": "C:\\Users\\rafae\\.nuget\\packages\\",
+        "outputPath": "D:\\projetos\\detalp-api\\DeltaP.API\\Contexts\\DeltaP.API.Empresas\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\rafae\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp2.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp2.1": {
+            "projectReferences": {
+              "D:\\projetos\\detalp-api\\DeltaP.API\\Shared\\DeltaP.API.Infra\\DeltaP.API.Infra.csproj": {
+                "projectPath": "D:\\projetos\\detalp-api\\DeltaP.API\\Shared\\DeltaP.API.Infra\\DeltaP.API.Infra.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp2.1": {
+          "dependencies": {
+            "Microsoft.NETCore.App": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.1.0, )",
+              "autoReferenced": true
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.0.100\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "D:\\projetos\\detalp-api\\DeltaP.API\\Contexts\\DeltaP.API.Movimentacao\\DeltaP.API.Movimentacoes.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\projetos\\detalp-api\\DeltaP.API\\Contexts\\DeltaP.API.Movimentacao\\DeltaP.API.Movimentacoes.csproj",
+        "projectName": "DeltaP.API.Movimentacoes",
+        "projectPath": "D:\\projetos\\detalp-api\\DeltaP.API\\Contexts\\DeltaP.API.Movimentacao\\DeltaP.API.Movimentacoes.csproj",
+        "packagesPath": "C:\\Users\\rafae\\.nuget\\packages\\",
+        "outputPath": "D:\\projetos\\detalp-api\\DeltaP.API\\Contexts\\DeltaP.API.Movimentacao\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\rafae\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp2.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp2.1": {
+            "projectReferences": {
+              "D:\\projetos\\detalp-api\\DeltaP.API\\Contexts\\DeltaP.API.Authorize\\DeltaP.API.Autorizacao.csproj": {
+                "projectPath": "D:\\projetos\\detalp-api\\DeltaP.API\\Contexts\\DeltaP.API.Authorize\\DeltaP.API.Autorizacao.csproj"
+              },
+              "D:\\projetos\\detalp-api\\DeltaP.API\\Contexts\\DeltaP.API.Parametros\\DeltaP.API.Parametros.csproj": {
+                "projectPath": "D:\\projetos\\detalp-api\\DeltaP.API\\Contexts\\DeltaP.API.Parametros\\DeltaP.API.Parametros.csproj"
+              },
+              "D:\\projetos\\detalp-api\\DeltaP.API\\Contexts\\DeltaP.API.User\\DeltaP.API.User.csproj": {
+                "projectPath": "D:\\projetos\\detalp-api\\DeltaP.API\\Contexts\\DeltaP.API.User\\DeltaP.API.User.csproj"
+              },
+              "D:\\projetos\\detalp-api\\DeltaP.API\\Contexts\\DeltaP.API.Vendedores\\DeltaP.API.Vendedores.csproj": {
+                "projectPath": "D:\\projetos\\detalp-api\\DeltaP.API\\Contexts\\DeltaP.API.Vendedores\\DeltaP.API.Vendedores.csproj"
+              },
+              "D:\\projetos\\detalp-api\\DeltaP.API\\Shared\\DeltaP.API.Infra\\DeltaP.API.Infra.csproj": {
+                "projectPath": "D:\\projetos\\detalp-api\\DeltaP.API\\Shared\\DeltaP.API.Infra\\DeltaP.API.Infra.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp2.1": {
+          "dependencies": {
+            "Microsoft.NETCore.App": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.1.0, )",
+              "autoReferenced": true
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.0.100\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "D:\\projetos\\detalp-api\\DeltaP.API\\Contexts\\DeltaP.API.Parametros\\DeltaP.API.Parametros.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\projetos\\detalp-api\\DeltaP.API\\Contexts\\DeltaP.API.Parametros\\DeltaP.API.Parametros.csproj",
+        "projectName": "DeltaP.API.Parametros",
+        "projectPath": "D:\\projetos\\detalp-api\\DeltaP.API\\Contexts\\DeltaP.API.Parametros\\DeltaP.API.Parametros.csproj",
+        "packagesPath": "C:\\Users\\rafae\\.nuget\\packages\\",
+        "outputPath": "D:\\projetos\\detalp-api\\DeltaP.API\\Contexts\\DeltaP.API.Parametros\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\rafae\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp2.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp2.1": {
+            "projectReferences": {
+              "D:\\projetos\\detalp-api\\DeltaP.API\\Shared\\DeltaP.API.Infra\\DeltaP.API.Infra.csproj": {
+                "projectPath": "D:\\projetos\\detalp-api\\DeltaP.API\\Shared\\DeltaP.API.Infra\\DeltaP.API.Infra.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp2.1": {
+          "dependencies": {
+            "Microsoft.NETCore.App": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.1.0, )",
+              "autoReferenced": true
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.0.100\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "D:\\projetos\\detalp-api\\DeltaP.API\\Contexts\\DeltaP.API.User\\DeltaP.API.User.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\projetos\\detalp-api\\DeltaP.API\\Contexts\\DeltaP.API.User\\DeltaP.API.User.csproj",
+        "projectName": "DeltaP.API.User",
+        "projectPath": "D:\\projetos\\detalp-api\\DeltaP.API\\Contexts\\DeltaP.API.User\\DeltaP.API.User.csproj",
+        "packagesPath": "C:\\Users\\rafae\\.nuget\\packages\\",
+        "outputPath": "D:\\projetos\\detalp-api\\DeltaP.API\\Contexts\\DeltaP.API.User\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\rafae\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp2.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp2.1": {
+            "projectReferences": {
+              "D:\\projetos\\detalp-api\\DeltaP.API\\Contexts\\DeltaP.API.Authorize\\DeltaP.API.Autorizacao.csproj": {
+                "projectPath": "D:\\projetos\\detalp-api\\DeltaP.API\\Contexts\\DeltaP.API.Authorize\\DeltaP.API.Autorizacao.csproj"
+              },
+              "D:\\projetos\\detalp-api\\DeltaP.API\\Contexts\\DeltaP.API.Empresas\\DeltaP.API.Empresas.csproj": {
+                "projectPath": "D:\\projetos\\detalp-api\\DeltaP.API\\Contexts\\DeltaP.API.Empresas\\DeltaP.API.Empresas.csproj"
+              },
+              "D:\\projetos\\detalp-api\\DeltaP.API\\Shared\\DeltaP.API.Infra\\DeltaP.API.Infra.csproj": {
+                "projectPath": "D:\\projetos\\detalp-api\\DeltaP.API\\Shared\\DeltaP.API.Infra\\DeltaP.API.Infra.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp2.1": {
+          "dependencies": {
+            "Microsoft.NETCore.App": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.1.0, )",
+              "autoReferenced": true
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.0.100\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "D:\\projetos\\detalp-api\\DeltaP.API\\Contexts\\DeltaP.API.Vendedores\\DeltaP.API.Vendedores.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\projetos\\detalp-api\\DeltaP.API\\Contexts\\DeltaP.API.Vendedores\\DeltaP.API.Vendedores.csproj",
+        "projectName": "DeltaP.API.Vendedores",
+        "projectPath": "D:\\projetos\\detalp-api\\DeltaP.API\\Contexts\\DeltaP.API.Vendedores\\DeltaP.API.Vendedores.csproj",
+        "packagesPath": "C:\\Users\\rafae\\.nuget\\packages\\",
+        "outputPath": "D:\\projetos\\detalp-api\\DeltaP.API\\Contexts\\DeltaP.API.Vendedores\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\rafae\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp2.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp2.1": {
+            "projectReferences": {
+              "D:\\projetos\\detalp-api\\DeltaP.API\\Contexts\\DeltaP.API.Authorize\\DeltaP.API.Autorizacao.csproj": {
+                "projectPath": "D:\\projetos\\detalp-api\\DeltaP.API\\Contexts\\DeltaP.API.Authorize\\DeltaP.API.Autorizacao.csproj"
+              },
+              "D:\\projetos\\detalp-api\\DeltaP.API\\Contexts\\DeltaP.API.Empresas\\DeltaP.API.Empresas.csproj": {
+                "projectPath": "D:\\projetos\\detalp-api\\DeltaP.API\\Contexts\\DeltaP.API.Empresas\\DeltaP.API.Empresas.csproj"
+              },
+              "D:\\projetos\\detalp-api\\DeltaP.API\\Shared\\DeltaP.API.Infra\\DeltaP.API.Infra.csproj": {
+                "projectPath": "D:\\projetos\\detalp-api\\DeltaP.API\\Shared\\DeltaP.API.Infra\\DeltaP.API.Infra.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp2.1": {
+          "dependencies": {
+            "Microsoft.NETCore.App": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.1.0, )",
+              "autoReferenced": true
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.0.100\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "D:\\projetos\\detalp-api\\DeltaP.API\\Shared\\DeltaP.API.Infra\\DeltaP.API.Infra.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\projetos\\detalp-api\\DeltaP.API\\Shared\\DeltaP.API.Infra\\DeltaP.API.Infra.csproj",
+        "projectName": "DeltaP.API.Infra",
+        "projectPath": "D:\\projetos\\detalp-api\\DeltaP.API\\Shared\\DeltaP.API.Infra\\DeltaP.API.Infra.csproj",
+        "packagesPath": "C:\\Users\\rafae\\.nuget\\packages\\",
+        "outputPath": "D:\\projetos\\detalp-api\\DeltaP.API\\Shared\\DeltaP.API.Infra\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\rafae\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp2.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp2.1": {
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp2.1": {
+          "dependencies": {
+            "CoreCompat.System.Drawing.v2": {
+              "target": "Package",
+              "version": "[5.2.0-preview1-r131, )"
+            },
+            "Dapper": {
+              "target": "Package",
+              "version": "[1.60.6, )"
+            },
+            "Dapper.FastCrud": {
+              "target": "Package",
+              "version": "[2.5.0.39, )"
+            },
+            "FluentValidator.Core": {
+              "target": "Package",
+              "version": "[1.0.1, )"
+            },
+            "Imageflow.NativeRuntime.win-x86_64-haswell": {
+              "target": "Package",
+              "version": "[1.0.0-rc14, )"
+            },
+            "Imageflow.Net": {
+              "target": "Package",
+              "version": "[0.2.6, )"
+            },
+            "Microsoft.AspNetCore.Http.Features": {
+              "target": "Package",
+              "version": "[1.1.0, )"
+            },
+            "Microsoft.NETCore.App": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.1.0, )",
+              "autoReferenced": true
+            },
+            "MongoDB.Driver": {
+              "target": "Package",
+              "version": "[2.8.1, )"
+            },
+            "MySql.Data": {
+              "target": "Package",
+              "version": "[8.0.16, )"
+            },
+            "MySql.Data.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[8.0.16, )"
+            },
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[12.0.2, )"
+            },
+            "System.Text.Encoding.CodePages": {
+              "target": "Package",
+              "version": "[4.5.1, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.0.100\\RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}
