@@ -17,7 +17,7 @@ namespace VireiContador.Cadastro.Repositorio
         public IReadOnlyCollection<CNAE> ListarCNAE()
         {
             var sql = $@"
-                SELECT id, codigo, anexo, baixo_risco, fator_r, aliquota, atendido, descricao
+                SELECT id, codigo, anexo, baixoRisco, fatorR, aliquota,  descricao
                 FROM vireicontador.cnae c; ";
 
             return ExecuteQueryList<CNAE>(sql);

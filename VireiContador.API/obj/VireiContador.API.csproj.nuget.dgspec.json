@@ -1,23 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "D:\\projetos\\virei-contador-sistema\\vireicontadorsistema\\virei-contador-sistema\\vireicontador.app\\VireiContador.App\\VireiContador.API\\VireiContador.API.csproj": {}
+    "D:\\projetos\\virei-contador-api\\vireicontador-api\\VireiContador.API\\VireiContador.API.csproj": {}
   },
   "projects": {
-    "D:\\projetos\\virei-contador-sistema\\vireicontadorsistema\\virei-contador-sistema\\vireicontador.app\\VireiContador.App\\VireiContador.API\\VireiContador.API.csproj": {
+    "D:\\projetos\\virei-contador-api\\vireicontador-api\\VireiContador.API\\VireiContador.API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\projetos\\virei-contador-sistema\\vireicontadorsistema\\virei-contador-sistema\\vireicontador.app\\VireiContador.App\\VireiContador.API\\VireiContador.API.csproj",
+        "projectUniqueName": "D:\\projetos\\virei-contador-api\\vireicontador-api\\VireiContador.API\\VireiContador.API.csproj",
         "projectName": "VireiContador.API",
-        "projectPath": "D:\\projetos\\virei-contador-sistema\\vireicontadorsistema\\virei-contador-sistema\\vireicontador.app\\VireiContador.App\\VireiContador.API\\VireiContador.API.csproj",
-        "packagesPath": "C:\\Users\\rafae\\.nuget\\packages\\",
-        "outputPath": "D:\\projetos\\virei-contador-sistema\\vireicontadorsistema\\virei-contador-sistema\\vireicontador.app\\VireiContador.App\\VireiContador.API\\obj\\",
+        "projectPath": "D:\\projetos\\virei-contador-api\\vireicontador-api\\VireiContador.API\\VireiContador.API.csproj",
+        "packagesPath": "C:\\Users\\rafla\\.nuget\\packages\\",
+        "outputPath": "D:\\projetos\\virei-contador-api\\vireicontador-api\\VireiContador.API\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-        ],
         "configFilePaths": [
-          "C:\\Users\\rafae\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\rafla\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -25,16 +22,17 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "https://api.nuget.org/v3/index.json": {}
+          "https://api.nuget.org/v3/index.json": {},
+          "https://nuget.peixeurbano.local/nuget": {}
         },
         "frameworks": {
           "netcoreapp2.1": {
             "projectReferences": {
-              "D:\\projetos\\virei-contador-sistema\\vireicontadorsistema\\virei-contador-sistema\\vireicontador.app\\VireiContador.App\\VireiContador.Cadastro\\VireiContador.Cadastro.csproj": {
-                "projectPath": "D:\\projetos\\virei-contador-sistema\\vireicontadorsistema\\virei-contador-sistema\\vireicontador.app\\VireiContador.App\\VireiContador.Cadastro\\VireiContador.Cadastro.csproj"
+              "D:\\projetos\\virei-contador-api\\vireicontador-api\\VireiContador.Cadastro\\VireiContador.Cadastro.csproj": {
+                "projectPath": "D:\\projetos\\virei-contador-api\\vireicontador-api\\VireiContador.Cadastro\\VireiContador.Cadastro.csproj"
               },
-              "D:\\projetos\\virei-contador-sistema\\vireicontadorsistema\\virei-contador-sistema\\vireicontador.app\\VireiContador.App\\VireiContador.Infra\\VireiContador.Infra.csproj": {
-                "projectPath": "D:\\projetos\\virei-contador-sistema\\vireicontadorsistema\\virei-contador-sistema\\vireicontador.app\\VireiContador.App\\VireiContador.Infra\\VireiContador.Infra.csproj"
+              "D:\\projetos\\virei-contador-api\\vireicontador-api\\VireiContador.Infra\\VireiContador.Infra.csproj": {
+                "projectPath": "D:\\projetos\\virei-contador-api\\vireicontador-api\\VireiContador.Infra\\VireiContador.Infra.csproj"
               }
             }
           }
@@ -88,20 +86,17 @@
         }
       }
     },
-    "D:\\projetos\\virei-contador-sistema\\vireicontadorsistema\\virei-contador-sistema\\vireicontador.app\\VireiContador.App\\VireiContador.Cadastro\\VireiContador.Cadastro.csproj": {
+    "D:\\projetos\\virei-contador-api\\vireicontador-api\\VireiContador.Cadastro\\VireiContador.Cadastro.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\projetos\\virei-contador-sistema\\vireicontadorsistema\\virei-contador-sistema\\vireicontador.app\\VireiContador.App\\VireiContador.Cadastro\\VireiContador.Cadastro.csproj",
+        "projectUniqueName": "D:\\projetos\\virei-contador-api\\vireicontador-api\\VireiContador.Cadastro\\VireiContador.Cadastro.csproj",
         "projectName": "VireiContador.Cadastro",
-        "projectPath": "D:\\projetos\\virei-contador-sistema\\vireicontadorsistema\\virei-contador-sistema\\vireicontador.app\\VireiContador.App\\VireiContador.Cadastro\\VireiContador.Cadastro.csproj",
-        "packagesPath": "C:\\Users\\rafae\\.nuget\\packages\\",
-        "outputPath": "D:\\projetos\\virei-contador-sistema\\vireicontadorsistema\\virei-contador-sistema\\vireicontador.app\\VireiContador.App\\VireiContador.Cadastro\\obj\\",
+        "projectPath": "D:\\projetos\\virei-contador-api\\vireicontador-api\\VireiContador.Cadastro\\VireiContador.Cadastro.csproj",
+        "packagesPath": "C:\\Users\\rafla\\.nuget\\packages\\",
+        "outputPath": "D:\\projetos\\virei-contador-api\\vireicontador-api\\VireiContador.Cadastro\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-        ],
         "configFilePaths": [
-          "C:\\Users\\rafae\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\rafla\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -109,13 +104,14 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "https://api.nuget.org/v3/index.json": {}
+          "https://api.nuget.org/v3/index.json": {},
+          "https://nuget.peixeurbano.local/nuget": {}
         },
         "frameworks": {
           "netcoreapp2.1": {
             "projectReferences": {
-              "D:\\projetos\\virei-contador-sistema\\vireicontadorsistema\\virei-contador-sistema\\vireicontador.app\\VireiContador.App\\VireiContador.Infra\\VireiContador.Infra.csproj": {
-                "projectPath": "D:\\projetos\\virei-contador-sistema\\vireicontadorsistema\\virei-contador-sistema\\vireicontador.app\\VireiContador.App\\VireiContador.Infra\\VireiContador.Infra.csproj"
+              "D:\\projetos\\virei-contador-api\\vireicontador-api\\VireiContador.Infra\\VireiContador.Infra.csproj": {
+                "projectPath": "D:\\projetos\\virei-contador-api\\vireicontador-api\\VireiContador.Infra\\VireiContador.Infra.csproj"
               }
             }
           }
@@ -154,20 +150,17 @@
         }
       }
     },
-    "D:\\projetos\\virei-contador-sistema\\vireicontadorsistema\\virei-contador-sistema\\vireicontador.app\\VireiContador.App\\VireiContador.Infra\\VireiContador.Infra.csproj": {
+    "D:\\projetos\\virei-contador-api\\vireicontador-api\\VireiContador.Infra\\VireiContador.Infra.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\projetos\\virei-contador-sistema\\vireicontadorsistema\\virei-contador-sistema\\vireicontador.app\\VireiContador.App\\VireiContador.Infra\\VireiContador.Infra.csproj",
+        "projectUniqueName": "D:\\projetos\\virei-contador-api\\vireicontador-api\\VireiContador.Infra\\VireiContador.Infra.csproj",
         "projectName": "VireiContador.Infra",
-        "projectPath": "D:\\projetos\\virei-contador-sistema\\vireicontadorsistema\\virei-contador-sistema\\vireicontador.app\\VireiContador.App\\VireiContador.Infra\\VireiContador.Infra.csproj",
-        "packagesPath": "C:\\Users\\rafae\\.nuget\\packages\\",
-        "outputPath": "D:\\projetos\\virei-contador-sistema\\vireicontadorsistema\\virei-contador-sistema\\vireicontador.app\\VireiContador.App\\VireiContador.Infra\\obj\\",
+        "projectPath": "D:\\projetos\\virei-contador-api\\vireicontador-api\\VireiContador.Infra\\VireiContador.Infra.csproj",
+        "packagesPath": "C:\\Users\\rafla\\.nuget\\packages\\",
+        "outputPath": "D:\\projetos\\virei-contador-api\\vireicontador-api\\VireiContador.Infra\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-        ],
         "configFilePaths": [
-          "C:\\Users\\rafae\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\rafla\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -175,7 +168,8 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "https://api.nuget.org/v3/index.json": {}
+          "https://api.nuget.org/v3/index.json": {},
+          "https://nuget.peixeurbano.local/nuget": {}
         },
         "frameworks": {
           "netcoreapp2.1": {

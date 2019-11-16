@@ -19,6 +19,7 @@ namespace VireiContador.Infra.Servico
 
             using (var httpClient = new HttpClient())
             {
+
                 var response = httpClient.GetAsync(url).Result;
                 return JsonConvert.DeserializeObject<T>(response.Content.ReadAsStringAsync().Result, settings);
             }
@@ -33,7 +34,7 @@ namespace VireiContador.Infra.Servico
             }
         }
 
-        public void PostData(string url, string json)
+        public void PostData(string url, string json, string apiKey)
         {
             var settings = new JsonSerializerSettings
             {
@@ -42,6 +43,10 @@ namespace VireiContador.Infra.Servico
 
             using (var httpClient = new HttpClient())
             {
+                if(!(string.IsNullOrEmpty(apiKey)))
+                    httpClient.DefaultRequestHeaders.Add("vireicontador-app", "d5PZIgRzkvUsfqgtReG5SrYav7FllM6m8cOhuyx3Uec");
+
+
                 httpClient.PostAsync(url, new StringContent(json, Encoding.UTF8, "application/json"));
             }
         }

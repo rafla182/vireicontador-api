@@ -6,7 +6,7 @@ namespace VireiContador.Cadastro.Model
 {
     public class Cliente
     {
-        public string Name { get; set; }
+        public string Nome { get; set; }
         public string Email { get; set; }
         public string CPF { get; set; }
         public string Telefone { get; set; }
@@ -25,6 +25,7 @@ namespace VireiContador.Cadastro.Model
         public bool QueroSerCliente { get; set; }
         public string TipoPagamento { get; set; }
         public CartaoCredito CartaoCredito { get; set; }
+        public decimal ValorPlano { get; set; }
     }
     public class CartaoCredito
     {

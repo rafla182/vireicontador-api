@@ -20,3 +20,14 @@ D:\projetos\virei-contador-sistema\vireicontadorsistema\virei-contador-sistema\v
 D:\projetos\virei-contador-sistema\vireicontadorsistema\virei-contador-sistema\vireicontador.app\VireiContador.App\VireiContador.Cadastro\obj\Debug\netcoreapp2.1\VireiContador.Cadastro.csproj.CopyComplete
 D:\projetos\virei-contador-sistema\vireicontadorsistema\virei-contador-sistema\vireicontador.app\VireiContador.App\VireiContador.Cadastro\obj\Debug\netcoreapp2.1\VireiContador.Cadastro.dll
 D:\projetos\virei-contador-sistema\vireicontadorsistema\virei-contador-sistema\vireicontador.app\VireiContador.App\VireiContador.Cadastro\obj\Debug\netcoreapp2.1\VireiContador.Cadastro.pdb
+D:\projetos\virei-contador-api\vireicontador-api\VireiContador.Cadastro\bin\Debug\netcoreapp2.1\VireiContador.Cadastro.deps.json
+D:\projetos\virei-contador-api\vireicontador-api\VireiContador.Cadastro\bin\Debug\netcoreapp2.1\VireiContador.Cadastro.dll
+D:\projetos\virei-contador-api\vireicontador-api\VireiContador.Cadastro\bin\Debug\netcoreapp2.1\VireiContador.Cadastro.pdb
+D:\projetos\virei-contador-api\vireicontador-api\VireiContador.Cadastro\bin\Debug\netcoreapp2.1\VireiContador.Infra.dll
+D:\projetos\virei-contador-api\vireicontador-api\VireiContador.Cadastro\bin\Debug\netcoreapp2.1\VireiContador.Infra.pdb
+D:\projetos\virei-contador-api\vireicontador-api\VireiContador.Cadastro\obj\Debug\netcoreapp2.1\VireiContador.Cadastro.csprojAssemblyReference.cache
+D:\projetos\virei-contador-api\vireicontador-api\VireiContador.Cadastro\obj\Debug\netcoreapp2.1\VireiContador.Cadastro.AssemblyInfoInputs.cache
+D:\projetos\virei-contador-api\vireicontador-api\VireiContador.Cadastro\obj\Debug\netcoreapp2.1\VireiContador.Cadastro.AssemblyInfo.cs
+D:\projetos\virei-contador-api\vireicontador-api\VireiContador.Cadastro\obj\Debug\netcoreapp2.1\VireiContador.Cadastro.csproj.CopyComplete
+D:\projetos\virei-contador-api\vireicontador-api\VireiContador.Cadastro\obj\Debug\netcoreapp2.1\VireiContador.Cadastro.dll
+D:\projetos\virei-contador-api\vireicontador-api\VireiContador.Cadastro\obj\Debug\netcoreapp2.1\VireiContador.Cadastro.pdb

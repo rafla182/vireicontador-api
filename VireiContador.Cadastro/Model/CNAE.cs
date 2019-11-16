@@ -12,7 +12,6 @@ namespace VireiContador.Cadastro.Model
         public bool BaixoRisco { get; set; }
         public bool FatorR { get; set; }
         public string Aliquota { get; set; }
-        public bool Atendido { get; set; }
         public string Descricao { get; set; }
     }
 }

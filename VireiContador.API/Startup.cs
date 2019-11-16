@@ -21,6 +21,7 @@ using Swashbuckle.AspNetCore.Swagger;
 using VireiContador.Cadastro.Repositorio;
 using VireiContador.Cadastro.Servicos;
 using VireiContador.Infra.Configuracao;
+using VireiContador.Infra.Servico;
 
 namespace VireiContadorP.API
 {
@@ -59,6 +60,10 @@ namespace VireiContadorP.API
 
             services.AddScoped<ClienteServico, ClienteServico>();
             services.AddScoped<ClienteRepositorio, ClienteRepositorio>();
+
+            services.AddScoped<EmpresaServico, EmpresaServico>();
+            services.AddScoped<EmpresaRepositorio, EmpresaRepositorio>();
+            services.AddScoped<ServicoApi, ServicoApi>();
             // Conta
             services.AddSingleton<AuthorizationAttribute>();
             services.TryAddSingleton<IHttpContextAccessor, HttpContextAccessor>();
