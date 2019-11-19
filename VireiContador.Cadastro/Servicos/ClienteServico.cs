@@ -60,7 +60,7 @@ namespace VireiContador.Cadastro.Servicos
             }
             catch (Exception ex)
             {
-                AdicionarNotificacao("Erro ao salvar o simula plano.");
+                AdicionarNotificacao("Erro ao salvar o simula plano." + ex.InnerException);
                 return 0;
             }
         }
