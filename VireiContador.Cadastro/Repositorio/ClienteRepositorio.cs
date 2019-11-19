@@ -85,7 +85,7 @@ namespace VireiContador.Cadastro.Repositorio
         public bool SalvarPlano(string email, decimal plano)
         {
             const string sql = @"
-                INSERT INTO simulaPlano (email, 
+                INSERT INTO vireicontador.simulaPlano (email, 
                                      plano)
                 VALUES (@Email, @Plano)
                 ";
