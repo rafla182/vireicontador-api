@@ -38,6 +38,31 @@ namespace VireiContador.Cadastro.Servicos
             }
         }
 
-        
+
+        public bool SalvarPlano(string email, decimal valor)
+        {
+            try
+            {
+                return clienteRepositorio.SalvarPlano(email, valor);
+            }
+            catch (Exception ex)
+            {
+                AdicionarNotificacao("Erro ao salvar o simula plano.");
+                return false;
+            }
+        }
+
+        public decimal PegarPlano(string email)
+        {
+            try
+            {
+                return clienteRepositorio.PegarPlano(email);
+            }
+            catch (Exception ex)
+            {
+                AdicionarNotificacao("Erro ao salvar o simula plano.");
+                return 0;
+            }
+        }
     }
 }

@@ -1,4 +1,5 @@
-﻿using FluentValidator;
+﻿using System;
+using FluentValidator;
 using VireiContador.Cadastro.Model;
 using VireiContador.Cadastro.Repositorio;
 using VireiContador.Infra.Servico;
@@ -21,5 +22,6 @@ namespace VireiContador.Cadastro.Servicos
             var response = servicoApi.GetData<Empresa>(cnpjURL);
             return response;
         }
+
     }
 }

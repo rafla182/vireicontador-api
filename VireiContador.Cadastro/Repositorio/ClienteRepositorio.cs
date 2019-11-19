@@ -72,5 +72,32 @@ namespace VireiContador.Cadastro.Repositorio
             return cliente;
 
         }
+
+        public decimal PegarPlano(string email)
+        {
+            var sql = $@"
+                SELECT plano
+                FROM vireicontador.simulaPlano WHERE email = @Email" ;
+
+            return ExecuteQuery<decimal>(sql, new { Email = email });
+        }
+
+        public bool SalvarPlano(string email, decimal plano)
+        {
+            const string sql = @"
+                INSERT INTO simulaPlano (email, 
+                                     plano)
+                VALUES (@Email, @Plano)
+                ";
+
+            ExecuteQuery<int>(sql, new
+            {
+                Email = email,
+                Plano = plano
+            });
+
+            return true;
+
+        }
     }
 }

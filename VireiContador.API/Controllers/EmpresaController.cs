@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using VireiContador.API.Models.Requests;
 using VireiContador.Cadastro.Servicos;
 using VireiContadorP.API.Controllers;
 
@@ -23,5 +24,6 @@ namespace VireiContador.API.Controllers
             var empresas = empresaServico.PegarEmpresa(cnpj);
             return await Response(empresas, empresaServico.Notifications);
         }
+
     }
 }

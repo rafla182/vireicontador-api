@@ -25,5 +25,20 @@ namespace VireiContador.API.Controllers
             var empresas = clienteServico.SalvarCliente(cliente.Cliente);
             return await Response(empresas, clienteServico.Notifications);
         }
+
+
+        [HttpPost("api/hash")]
+        public async Task<IActionResult> SalvarPlano([FromBody] HashRequest hash)
+        {
+            var empresas = clienteServico.SalvarPlano(hash.Email, hash.Valor);
+            return await Response(empresas, clienteServico.Notifications);
+        }
+
+        [HttpGet("api/hash/{email}")]
+        public async Task<IActionResult> PegarPlano(string email)
+        {
+            var empresas = clienteServico.PegarPlano(email);
+            return await Response(empresas, clienteServico.Notifications);
+        }
     }
 }
