@@ -8,6 +8,7 @@ namespace VireiContador.Cadastro.Model
     {
         public decimal Valor { get; set; }
         public string Nome { get; set; }
+        public string Plano { get; set; }
         public int PlanoID { get; set; }
         public int ProdutoID { get; set; }
         public string PaymentMethodCode { get; set; }
