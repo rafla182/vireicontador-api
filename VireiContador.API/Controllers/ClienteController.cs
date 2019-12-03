@@ -20,12 +20,11 @@ namespace VireiContador.API.Controllers
         }
 
         [HttpPost("api/salvar")]
-        public async Task<IActionResult> SalvarCliente([FromBody] ClienteRequest cliente)
+        public async Task<IActionResult> Salvar([FromBody] SalvarRequest cliente)
         {
-            var empresas = clienteServico.SalvarCliente(cliente.Cliente);
+            var empresas = clienteServico.Salvar(cliente.Cliente, cliente.Plano, cliente.Fatura);
             return await Response(empresas, clienteServico.Notifications);
         }
-
 
         [HttpPost("api/hash")]
         public async Task<IActionResult> SalvarPlano([FromBody] HashRequest hash)

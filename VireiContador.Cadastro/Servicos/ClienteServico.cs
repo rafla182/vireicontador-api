@@ -20,7 +20,63 @@ namespace VireiContador.Cadastro.Servicos
             this.clienteRepositorio = clienteRepositorio;
             this.servicoApi = servicoApi;
         }
-        public Customer SalvarCliente(Cliente cliente)
+        public ClienteVINDI Salvar(Cliente cliente, Plano plano, Fatura fatura)
+        {
+            var customer = SalvarCliente(cliente);
+            var assinatura = SalvarAssinatura(plano, customer.id);
+            var faturas = SalvarFatura(customer.id, fatura);
+
+            return customer;
+        }
+
+        private FaturaVINDI SalvarFatura(int clienteID, Fatura fatura)
+        {
+            var produtos = new List<ItemFaturaVINDI>();
+            produtos.Add(new ItemFaturaVINDI()
+            {
+                product_id = fatura.ProdutoID
+            });
+
+            var faturaVINDI = new FaturaVINDI()
+            {
+                customer_id = clienteID,
+                bill_items = produtos,
+                payment_method_code = fatura.PaymentMethodCode
+            };
+
+            var url = $"https://sandbox-app.vindi.com.br:443/api/v1/subscriptions";
+
+            var json = JsonConvert.SerializeObject(faturaVINDI);
+            var result = servicoApi.PostDataAuth<FaturaVINDIRequest>(url, json);
+
+            return result.Fatura;
+        }
+
+        private PlanoVINDI SalvarAssinatura(Plano plano, int clienteID)
+        {
+            var produtos = new List<ItemsVINDI>();
+            produtos.Add(new ItemsVINDI()
+            {
+                product_id = plano.ProdutoID
+            });
+
+            var planoVINDI = new PlanoVINDI()
+            {
+                customer_id = clienteID,
+                plan_id = plano.PlanoID,
+                product_items = produtos,
+                payment_method_code = plano.PaymentMethodCode
+            };
+
+            var url = $"https://sandbox-app.vindi.com.br:443/api/v1/subscriptions";
+
+            var json = JsonConvert.SerializeObject(planoVINDI);
+            var result = servicoApi.PostDataAuth<PlanoVINDIRequest>(url, json);
+
+            return result.Plano;
+        }
+
+        public ClienteVINDI SalvarCliente(Cliente cliente)
         {
             try
             {
@@ -32,7 +88,7 @@ namespace VireiContador.Cadastro.Servicos
                     extension = ""
                 });
 
-                var customer = new Customer()
+                var customer = new ClienteVINDI()
                 {
                     name = cliente.Nome,
                     email = cliente.Email,
@@ -55,10 +111,9 @@ namespace VireiContador.Cadastro.Servicos
                 var url = $"https://sandbox-app.vindi.com.br:443/api/v1/customers";
 
                 var json = JsonConvert.SerializeObject(customer);
-                var result = servicoApi.PostDataAuth<CustomerResponse>(url, json);
+                var result = servicoApi.PostDataAuth<ClienteVINDIResponse>(url, json);
 
                 return result.Customer;
-
 
             }
             catch (Exception ex)
@@ -67,7 +122,6 @@ namespace VireiContador.Cadastro.Servicos
                 return null;
             }
         }
-
 
         public bool SalvarPlano(string email, decimal valor, string plano, string nome)
         {
@@ -94,7 +148,7 @@ namespace VireiContador.Cadastro.Servicos
             catch (Exception ex)
             {
                 AdicionarNotificacao("Erro ao salvar o simula plano." + ex.InnerException);
-                return 0;
+                return null;
             }
         }
     }

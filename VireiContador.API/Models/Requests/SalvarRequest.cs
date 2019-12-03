@@ -6,8 +6,12 @@ using VireiContador.Cadastro.Model;
 
 namespace VireiContador.API.Models.Requests
 {
-    public class ClienteRequest
+    public class SalvarRequest
     {
-        public Customer Cliente { get; set; }
+        public Cliente Cliente { get; set; }
+
+        public Plano Plano { get; set; }
+
+        public Fatura Fatura { get; set; }
     }
 }

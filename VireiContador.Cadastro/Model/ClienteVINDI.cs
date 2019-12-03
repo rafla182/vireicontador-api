@@ -4,10 +4,10 @@ using System.Text;
 
 namespace VireiContador.Cadastro.Model
 {
-    public class CustomerResult { 
-        public IReadOnlyList<Customer> Customers { get; set; }
+    public class ClineteVINDIResult { 
+        public IReadOnlyList<ClienteVINDI> Customers { get; set; }
     }
-    public class Customer
+    public class ClienteVINDI
     {
         public int id { get; set; }
         public string name { get; set; }
@@ -47,8 +47,8 @@ namespace VireiContador.Cadastro.Model
         public string country { get; set; }
     }
 
-    public class CustomerResponse
+    public class ClienteVINDIResponse
     {
-        public Customer Customer { get; set; }
+        public ClienteVINDI Customer { get; set; }
     }
 }
