@@ -76,7 +76,7 @@ namespace VireiContador.Cadastro.Repositorio
         public Plano PegarPlano(string email)
         {
             var sql = $@"
-                SELECT plano, valor, nome
+                SELECT plano as descricao, valor, nome
                 FROM vireicontador.simulaPlano WHERE email = @Email" ;
 
             return ExecuteQuery<Plano>(sql, new { Email = email });
