@@ -7,7 +7,7 @@ namespace VireiContador.Cadastro.Model
     public class Plano
     {
         public decimal Valor { get; set; }
-        public string PlanoText { get; set; }
+        public string Nome { get; set; }
         public int PlanoID { get; set; }
         public int ProdutoID { get; set; }
         public string PaymentMethodCode { get; set; }
