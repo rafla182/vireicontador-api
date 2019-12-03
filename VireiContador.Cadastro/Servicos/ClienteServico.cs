@@ -20,40 +20,41 @@ namespace VireiContador.Cadastro.Servicos
             this.clienteRepositorio = clienteRepositorio;
             this.servicoApi = servicoApi;
         }
-        public Customer SalvarCliente(Customer cliente)
+        public Customer SalvarCliente(Cliente cliente)
         {
             try
             {
-            //    var phones = new List<Phone>();
-            //    phones.Add( new Phone {
-            //        phone_type = "",
-            //        number = cliente.Telefone,
-            //        extension = ""
-            //    });
+                var phones = new List<Phone>();
+                phones.Add(new Phone
+                {
+                    phone_type = "",
+                    number = cliente.Telefone,
+                    extension = ""
+                });
 
-            //    var customer = new Customer()
-            //    {
-            //        name = cliente.Nome,
-            //        email = cliente.Email,
-            //        address = new Address
-            //        {
-            //            street = cliente.Logradouro,
-            //            number = cliente.Numero,
-            //            additional_details = cliente.Complemento,
-            //            zipcode = cliente.CEP,
-            //            state = cliente.Estado,
-            //            city = cliente.Cidade,
-            //            country = "Brasil",
-            //            neighborhood = cliente.Bairro
-            //        },
-            //        phones = phones
-            //    };
+                var customer = new Customer()
+                {
+                    name = cliente.Nome,
+                    email = cliente.Email,
+                    address = new Address
+                    {
+                        street = cliente.Logradouro,
+                        number = cliente.Numero,
+                        additional_details = cliente.Complemento,
+                        zipcode = cliente.CEP,
+                        state = cliente.Estado,
+                        city = cliente.Cidade,
+                        country = "Brasil",
+                        neighborhood = cliente.Bairro
+                    },
+                    phones = phones
+                };
 
-               // var clienteSalvo = clienteRepositorio.SalvarCliente(cliente);
+                var clienteSalvo = clienteRepositorio.SalvarCliente(cliente);
 
                 var url = $"https://sandbox-app.vindi.com.br:443/api/v1/customers";
 
-                var json = JsonConvert.SerializeObject(cliente);
+                var json = JsonConvert.SerializeObject(customer);
                 var result = servicoApi.PostDataAuth<CustomerResponse>(url, json);
 
                 return result.Customer;
@@ -81,12 +82,12 @@ namespace VireiContador.Cadastro.Servicos
             }
         }
 
-        public decimal PegarPlano(string email)
+        public Plano PegarPlano(string email)
         {
             try
             {
-                var url = $"https://sandbox-app.vindi.com.br:443/api/v1/customers?page=1&sort_by=created_at&sort_order=asc";
-                var result = servicoApi.GetDataVINDI<CustomerResult>(url);
+                //var url = $"https://sandbox-app.vindi.com.br:443/api/v1/customers?page=1&sort_by=created_at&sort_order=asc";
+                //var result = servicoApi.GetDataVINDI<CustomerResult>(url);
 
                 return clienteRepositorio.PegarPlano(email);
             }

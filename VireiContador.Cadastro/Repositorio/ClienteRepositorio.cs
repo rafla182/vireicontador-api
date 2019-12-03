@@ -73,13 +73,13 @@ namespace VireiContador.Cadastro.Repositorio
 
         }
 
-        public decimal PegarPlano(string email)
+        public Plano PegarPlano(string email)
         {
             var sql = $@"
-                SELECT plano
+                SELECT plano, valor
                 FROM vireicontador.simulaPlano WHERE email = @Email" ;
 
-            return ExecuteQuery<decimal>(sql, new { Email = email });
+            return ExecuteQuery<Plano>(sql, new { Email = email });
         }
 
         public bool SalvarPlano(string email, string nome, decimal valor, string plano)
