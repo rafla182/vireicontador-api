@@ -30,7 +30,7 @@ namespace VireiContador.API.Controllers
         [HttpPost("api/hash")]
         public async Task<IActionResult> SalvarPlano([FromBody] HashRequest hash)
         {
-            var empresas = clienteServico.SalvarPlano(hash.Email, hash.Valor);
+            var empresas = clienteServico.SalvarPlano(hash.Email, hash.Valor, hash.Plano, hash.Nome);
             return await Response(empresas, clienteServico.Notifications);
         }
 

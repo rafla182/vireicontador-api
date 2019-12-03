@@ -5,6 +5,7 @@ using FluentValidator;
 using Newtonsoft.Json;
 using VireiContador.Cadastro.Model;
 using VireiContador.Cadastro.Repositorio;
+using VireiContador.Infra.Models;
 using VireiContador.Infra.Notificacoes;
 using VireiContador.Infra.Servico;
 
@@ -17,18 +18,46 @@ namespace VireiContador.Cadastro.Servicos
         public ClienteServico(ClienteRepositorio clienteRepositorio, ServicoApi servicoApi)
         {
             this.clienteRepositorio = clienteRepositorio;
+            this.servicoApi = servicoApi;
         }
-        public Cliente SalvarCliente(Cliente cliente)
+        public Customer SalvarCliente(Customer cliente)
         {
             try
             {
-                var clienteSalvo = clienteRepositorio.SalvarCliente(cliente);
+            //    var phones = new List<Phone>();
+            //    phones.Add( new Phone {
+            //        phone_type = "",
+            //        number = cliente.Telefone,
+            //        extension = ""
+            //    });
 
-                //var url = $"{configuration.FenixInnApi}${partnerID}/enable";
+            //    var customer = new Customer()
+            //    {
+            //        name = cliente.Nome,
+            //        email = cliente.Email,
+            //        address = new Address
+            //        {
+            //            street = cliente.Logradouro,
+            //            number = cliente.Numero,
+            //            additional_details = cliente.Complemento,
+            //            zipcode = cliente.CEP,
+            //            state = cliente.Estado,
+            //            city = cliente.Cidade,
+            //            country = "Brasil",
+            //            neighborhood = cliente.Bairro
+            //        },
+            //        phones = phones
+            //    };
 
-                //var json = JsonConvert.SerializeObject(partner);
-                //var result = servicoApi.PostData<Cliente>(url, json);
-                return clienteSalvo;
+               // var clienteSalvo = clienteRepositorio.SalvarCliente(cliente);
+
+                var url = $"https://sandbox-app.vindi.com.br:443/api/v1/customers";
+
+                var json = JsonConvert.SerializeObject(cliente);
+                var result = servicoApi.PostDataAuth<CustomerResponse>(url, json);
+
+                return result.Customer;
+
 
             }
             catch (Exception ex)
@@ -39,11 +68,11 @@ namespace VireiContador.Cadastro.Servicos
         }
 
 
-        public bool SalvarPlano(string email, decimal valor)
+        public bool SalvarPlano(string email, decimal valor, string plano, string nome)
         {
             try
             {
-                return clienteRepositorio.SalvarPlano(email, valor);
+                return clienteRepositorio.SalvarPlano(email, nome, valor, plano);
             }
             catch (Exception ex)
             {
@@ -56,6 +85,9 @@ namespace VireiContador.Cadastro.Servicos
         {
             try
             {
+                var url = $"https://sandbox-app.vindi.com.br:443/api/v1/customers?page=1&sort_by=created_at&sort_order=asc";
+                var result = servicoApi.GetDataVINDI<CustomerResult>(url);
+
                 return clienteRepositorio.PegarPlano(email);
             }
             catch (Exception ex)

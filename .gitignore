@@ -1,3 +1,7 @@
 /.vs
 /VireiContador.API/bin
 /VireiContador.API/obj
+/VireiContador.Cadastro/bin
+/VireiContador.Infra/bin
+/VireiContador.Cadastro/obj
+/VireiContador.Infra/obj

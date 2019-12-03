@@ -25,6 +25,26 @@ namespace VireiContador.Infra.Servico
             }
         }
 
+        public T GetDataVINDI<T>(string url)
+        {
+            var settings = new JsonSerializerSettings
+            {
+                ContractResolver = new JsonLowerCaseUnderscoreContractResolver()
+            };
+
+            using (var httpClient = new HttpClient())
+            {
+
+                httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", Convert.ToBase64String(
+            System.Text.ASCIIEncoding.ASCII.GetBytes(
+               $"jdkaVXuXMISvPhXJjbusx7ZFzHLoivnXyOEP31j0HiI")));
+
+
+                var response = httpClient.GetAsync(url).Result;
+                return JsonConvert.DeserializeObject<T>(response.Content.ReadAsStringAsync().Result, settings);
+            }
+        }
+
         public T GetDataRaw<T>(string url)
         {
             using (var httpClient = new HttpClient())
@@ -33,6 +53,7 @@ namespace VireiContador.Infra.Servico
                 return JsonConvert.DeserializeObject<T>(response.Content.ReadAsStringAsync().Result);
             }
         }
+
 
         public void PostData(string url, string json, string apiKey)
         {
@@ -84,15 +105,23 @@ namespace VireiContador.Infra.Servico
             }
         }
 
-        public T PostDataAuth<T>(string url, string json, string user, string pass)
+        public T PostDataAuth<T>(string url, string json)
         {
+
+            var settings = new JsonSerializerSettings
+            {
+                ContractResolver = new JsonLowerCaseUnderscoreContractResolver()
+            };
+
             using (var httpClient = new HttpClient())
             {
-                var byteArray = Encoding.ASCII.GetBytes(user + ":" + pass);
-                httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", Convert.ToBase64String(byteArray));
 
-                var response = httpClient.PostAsync(url, new StringContent(json, Encoding.UTF8, "application/json"));
-                return JsonConvert.DeserializeObject<T>(response.Result.Content.ReadAsStringAsync().Result);
+                httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", Convert.ToBase64String(ASCIIEncoding.ASCII.GetBytes(
+               $"jdkaVXuXMISvPhXJjbusx7ZFzHLoivnXyOEP31j0HiI")));
+
+                var response = httpClient.PostAsync(url, new StringContent(json, Encoding.UTF8, "application/json")).Result;
+                return JsonConvert.DeserializeObject<T>(response.Content.ReadAsStringAsync().Result, settings);
+
             }
         }
     }

@@ -63,6 +63,10 @@ namespace VireiContadorP.API
 
             services.AddScoped<EmpresaServico, EmpresaServico>();
             services.AddScoped<EmpresaRepositorio, EmpresaRepositorio>();
+
+            services.AddScoped<LocalidadeServico, LocalidadeServico>();
+            services.AddScoped<LocalidadeRespositorio, LocalidadeRespositorio>();
+
             services.AddScoped<ServicoApi, ServicoApi>();
             // Conta
             services.AddSingleton<AuthorizationAttribute>();

@@ -8,6 +8,6 @@ namespace VireiContador.API.Models.Requests
 {
     public class ClienteRequest
     {
-        public Cliente Cliente { get; set; }
+        public Customer Cliente { get; set; }
     }
 }

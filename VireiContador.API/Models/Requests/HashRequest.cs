@@ -9,5 +9,7 @@ namespace VireiContador.API.Models.Requests
     {
         public string Email { get; set; }
         public decimal Valor { get; set; }
+        public string Plano { get; set; }
+        public string Nome { get; set; }
     }
 }
