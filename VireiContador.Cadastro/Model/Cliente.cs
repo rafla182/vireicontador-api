@@ -17,7 +17,8 @@ namespace VireiContador.Cadastro.Model
         public string Logradouro { get; set; }
         public string Numero { get; set; }
         public string Complemento { get; set; }
-        public bool EmpresaCidade { get; set; }
+        public string EmpresaCidade { get; set; }
+        public string EmpresaEstado { get; set; }
         public CNAE AtividadePrimaria { get; set; }
         public List<CNAE> AtividadeSecundaria { get; set; }
         public string TipoSociedade { get; set; }

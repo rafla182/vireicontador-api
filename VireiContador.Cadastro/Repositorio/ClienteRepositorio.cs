@@ -14,8 +14,14 @@ namespace VireiContador.Cadastro.Repositorio
         {
         }
 
-        public Cliente SalvarCliente(Cliente cliente)
+        public Cliente SalvarCliente(Cliente cliente, Assinatura assinatura, CartaoCredito cartao)
         {
+            var atividadeSecundaria = "";
+            foreach (var atrividade in cliente.AtividadeSecundaria)
+            {
+                atividadeSecundaria = atividadeSecundaria + atrividade.Codigo + " - " + atrividade.Descricao + ";";
+            }
+
             const string sql = @"
                 INSERT INTO cliente (nome, 
                                      email, 
@@ -29,18 +35,38 @@ namespace VireiContador.Cadastro.Repositorio
                                     cidade, 
                                     estado, 
                                     dataCadastro, 
-                                    tipoPagamento, 
-                                    empresaCidade, 
-                                    atividadePrimariaId, 
-                                    atividadeSecundariaId,
+                                    empresaEstado,
+                                    empresaCidade,
+                                    tipoPagamento,
+                                    atividadePrimaria, 
+                                    atividadeSecundaria,
                                     tipoSociedade,
-                                    atividadeDesc,
-                                    queroSerCliente,
                                     cartaoCredito,
                                     cvv,
                                     titularCartao,
                                     vencimento)
-                VALUES (@Nome, @Email, @Telefone, @Cpf, @Logradouro, @Numero, @Complemento, @Cep, @Bairro, @Cidade, @Estado, NOW(), @TipoPagamento, @EmpresaCidade, @AtividadePrimariaId, @AtividadeSecundariaId, @TipoSociedade, @AtividadeDesc, @QueroSerCliente, @CartaoCredito, @Cvv, @TitularCartao, @Vencimento)
+                VALUES (@Nome, 
+                        @Email, 
+                        @Telefone, 
+                        @Cpf, 
+                        @Logradouro, 
+                        @Numero, 
+                        @Complemento, 
+                        @Cep, 
+                        @Bairro, 
+                        @Cidade, 
+                        @Estado, 
+                        NOW(), 
+                        @EmpresaEstado,
+                        @EmpresaCidade,
+                        @TipoPagamento, 
+                        @AtividadePrimaria, 
+                        @AtividadeSecundaria, 
+                        @TipoSociedade,                         
+                        @CartaoCredito, 
+                        @Cvv, 
+                        @TitularCartao, 
+                        @Vencimento)
                 ";
 
             var id = ExecuteQuery<int>(sql, new
@@ -56,9 +82,16 @@ namespace VireiContador.Cadastro.Repositorio
                 Bairro = cliente.Bairro,
                 Cidade = cliente.Cidade,
                 Estado = cliente.Estado,
+                EmpresaEstado = cliente.EmpresaEstado,
                 EmpresaCidade = cliente.EmpresaCidade,
-                AtividadePrimariaId = cliente.AtividadePrimaria.Id,
+                TipoPagamento = assinatura.TipoPagamento,
+                AtividadePrimaria = cliente.AtividadePrimaria.Codigo + " - " + cliente.AtividadePrimaria.Descricao ,
+                AtividadeSecundaria = atividadeSecundaria,
                 TipoSociedade = cliente.TipoSociedade,
+                CartaoCredito = cartao.Numero,
+                Cvv = cartao.CVV,
+                TitularCartao = cartao.TitularCartao,
+                Vencimento = cartao.Vencimento
             });
 
             return cliente;
@@ -71,7 +104,7 @@ namespace VireiContador.Cadastro.Repositorio
                 SELECT plano as descricao, valor, nome
                 FROM vireicontador.simulaPlano 
                 WHERE email = @Email
-                ORDER BY email
+                ORDER BY dataCadastro desc
                 LIMIT 1" ;
 
             return ExecuteQuery<Assinatura>(sql, new { Email = email });

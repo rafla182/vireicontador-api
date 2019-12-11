@@ -23,24 +23,32 @@ namespace VireiContador.Cadastro.Servicos
         }
         public AssinaturaVINDIRequest Salvar(Cliente cliente, Assinatura assinatura, CartaoCredito cartao)
         {
-            var clienteVINDI = ObterCliente(cliente.CPF);
-            var customer = new ClienteVINDI();
-            if (clienteVINDI == null)
-                customer = SalvarCliente(cliente);
-            else
-                customer = clienteVINDI;
-
-
-            if (assinatura.TipoPagamento == "credit_card")
+            try
             {
-                var profile = SalvarProfile(cartao, customer.id);
-                var assinaturaRetorno = SalvarAssinatura(assinatura, customer.id, profile.id);
-                return assinaturaRetorno;
+                var clienteVINDI = ObterCliente(cliente.Email);
+                var customer = new ClienteVINDI();
+                if (clienteVINDI == null)
+                    customer = SalvarCliente(cliente, assinatura, cartao);
+                else
+                    customer = clienteVINDI;
+
+                if (assinatura.TipoPagamento == "credit_card")
+                {
+                    var profile = SalvarProfile(cartao, customer.id);
+                    var assinaturaRetorno = SalvarAssinatura(assinatura, customer.id, profile.id);
+                    return assinaturaRetorno;
+                }
+                else
+                {
+                    var assinaturaRetorno = SalvarAssinaturaBoleto(assinatura, customer.id);
+                    return assinaturaRetorno;
+                }
             }
-            else
+            catch (Exception ex)
             {
-                var assinaturaRetorno = SalvarAssinaturaBoleto(assinatura, customer.id);
-                return assinaturaRetorno;
+                AdicionarNotificacao("Erro ao salvar o cliente.");
+                return null;
+
             }
         }
 
@@ -139,7 +147,7 @@ namespace VireiContador.Cadastro.Servicos
             return result;
         }
 
-        public ClienteVINDI SalvarCliente(Cliente cliente)
+        public ClienteVINDI SalvarCliente(Cliente cliente, Assinatura assinatura, CartaoCredito cartao)
         {
             try
             {
@@ -169,8 +177,7 @@ namespace VireiContador.Cadastro.Servicos
                     phones = phones
                 };
 
-
-                //var clienteSalvo = clienteRepositorio.SalvarCliente(cliente);
+                var clienteSalvo = clienteRepositorio.SalvarCliente(cliente, assinatura, cartao);
 
                 var url = $"https://sandbox-app.vindi.com.br:443/api/v1/customers";
 
@@ -187,10 +194,10 @@ namespace VireiContador.Cadastro.Servicos
             }
         }
 
-        private ClienteVINDI ObterCliente(string cpf)
+        private ClienteVINDI ObterCliente(string email)
         {
 
-            var url = $"https://sandbox-app.vindi.com.br:443/api/v1/customers?query=registry_code:" + cpf;
+            var url = $"https://sandbox-app.vindi.com.br:443/api/v1/customers?query=email:" + email;
             var result = servicoApi.GetDataVINDI<ClienteListVINDIResponse>(url);
             return result?.Customers.FirstOrDefault();
 
@@ -214,9 +221,6 @@ namespace VireiContador.Cadastro.Servicos
         {
             try
             {
-                //var url = $"https://sandbox-app.vindi.com.br:443/api/v1/customers?page=1&sort_by=created_at&sort_order=asc";
-                //var result = servicoApi.GetDataVINDI<CustomerResult>(url);
-
                 return clienteRepositorio.PegarPlano(email);
             }
             catch (Exception ex)
