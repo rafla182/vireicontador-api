@@ -19,20 +19,8 @@ namespace VireiContador.Cadastro.Model
         public string Complemento { get; set; }
         public bool EmpresaCidade { get; set; }
         public CNAE AtividadePrimaria { get; set; }
-        public CNAE AtividadeSecundaria { get; set; }
+        public List<CNAE> AtividadeSecundaria { get; set; }
         public string TipoSociedade { get; set; }
-        public string AtividadeDesc { get; set; }
-        public bool QueroSerCliente { get; set; }
-        public string TipoPagamento { get; set; }
-        public CartaoCredito CartaoCredito { get; set; }
-        public decimal ValorPlano { get; set; }
-    }
-    public class CartaoCredito
-    {
-        public string Numero { get; set; }
-        public string CVV { get; set; }
-        public string TitularCartao { get; set; }
-        public string Vencimento { get; set; }
     }
 
 }

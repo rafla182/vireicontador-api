@@ -51,4 +51,9 @@ namespace VireiContador.Cadastro.Model
     {
         public ClienteVINDI Customer { get; set; }
     }
+
+    public class ClienteListVINDIResponse
+    {
+        public List<ClienteVINDI> Customers { get; set; }
+    }
 }

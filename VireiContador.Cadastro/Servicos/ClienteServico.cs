@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using FluentValidator;
 using Newtonsoft.Json;
@@ -20,60 +21,122 @@ namespace VireiContador.Cadastro.Servicos
             this.clienteRepositorio = clienteRepositorio;
             this.servicoApi = servicoApi;
         }
-        public ClienteVINDI Salvar(Cliente cliente, Plano plano, Fatura fatura)
+        public AssinaturaVINDIRequest Salvar(Cliente cliente, Assinatura assinatura, CartaoCredito cartao)
         {
-            var customer = SalvarCliente(cliente);
-            var assinatura = SalvarAssinatura(plano, customer.id);
-            var faturas = SalvarFatura(customer.id, fatura);
+            var clienteVINDI = ObterCliente(cliente.CPF);
+            var customer = new ClienteVINDI();
+            if (clienteVINDI == null)
+                customer = SalvarCliente(cliente);
+            else
+                customer = clienteVINDI;
 
-            return customer;
+
+            if (assinatura.TipoPagamento == "credit_card")
+            {
+                var profile = SalvarProfile(cartao, customer.id);
+                var assinaturaRetorno = SalvarAssinatura(assinatura, customer.id, profile.id);
+                return assinaturaRetorno;
+            }
+            else
+            {
+                var assinaturaRetorno = SalvarAssinaturaBoleto(assinatura, customer.id);
+                return assinaturaRetorno;
+            }
         }
 
-        private FaturaVINDI SalvarFatura(int clienteID, Fatura fatura)
+        private PerfilPagamentoRetornoVINDI SalvarProfile(CartaoCredito cartao, int clienteID)
         {
-            var produtos = new List<ItemFaturaVINDI>();
-            produtos.Add(new ItemFaturaVINDI()
+            var perfilVINDI = new PerfilPagamentoVINDI()
             {
-                product_id = fatura.ProdutoID
-            });
-
-            var faturaVINDI = new FaturaVINDI()
-            {
+                holder_name = cartao.TitularCartao,
+                card_expiration = cartao.Vencimento.Insert(2, "/"),
+                card_number = cartao.Numero,
                 customer_id = clienteID,
-                bill_items = produtos,
-                payment_method_code = fatura.PaymentMethodCode
+                card_cvv = cartao.CVV,
+
             };
 
-            var url = $"https://sandbox-app.vindi.com.br:443/api/v1/subscriptions";
+            var url = $"https://sandbox-app.vindi.com.br:443/api/v1/payment_profiles";
 
-            var json = JsonConvert.SerializeObject(faturaVINDI);
-            var result = servicoApi.PostDataAuth<FaturaVINDIRequest>(url, json);
+            var json = JsonConvert.SerializeObject(perfilVINDI);
+            var result = servicoApi.PostDataAuth<PerfilPagamentoVINDIRequest>(url, json);
 
-            return result.Fatura;
+            return result.payment_profile;
         }
 
-        private PlanoVINDI SalvarAssinatura(Plano plano, int clienteID)
+        //private FaturaVINDI SalvarFatura(int clienteID, Fatura fatura)
+        //{
+        //    var produtos = new List<ItemFaturaVINDI>();
+        //    produtos.Add(new ItemFaturaVINDI()
+        //    {
+        //        product_id = fatura.ProdutoID
+        //    });
+
+        //    var faturaVINDI = new FaturaVINDI()
+        //    {
+        //        customer_id = clienteID,
+        //        bill_items = produtos,
+        //        payment_method_code = fatura.TipoPagamento
+        //    };
+
+        //    var url = $"https://sandbox-app.vindi.com.br:443/api/v1/subscriptions";
+
+        //    var json = JsonConvert.SerializeObject(faturaVINDI);
+        //    var result = servicoApi.PostDataAuth<FaturaVINDIRequest>(url, json);
+
+        //    return result.Fatura;
+        //}
+
+        private AssinaturaVINDIRequest SalvarAssinatura(Assinatura plano, int clienteID, int profileID)
         {
             var produtos = new List<ItemsVINDI>();
             produtos.Add(new ItemsVINDI()
             {
-                product_id = plano.ProdutoID
+                product_id = plano.ProdutoId
             });
 
-            var planoVINDI = new PlanoVINDI()
+            var planoVINDI = new AssinaturaVINDI()
             {
                 customer_id = clienteID,
-                plan_id = plano.PlanoID,
+                plan_id = plano.Id,
                 product_items = produtos,
-                payment_method_code = plano.PaymentMethodCode
+                payment_method_code = plano.TipoPagamento,
+                payment_profile = new PerfilPagamentoAssinaturaVINDI()
+                {
+                    id = profileID
+                }
             };
 
             var url = $"https://sandbox-app.vindi.com.br:443/api/v1/subscriptions";
 
             var json = JsonConvert.SerializeObject(planoVINDI);
-            var result = servicoApi.PostDataAuth<PlanoVINDIRequest>(url, json);
+            var result = servicoApi.PostDataAuth<AssinaturaVINDIRequest>(url, json);
 
-            return result.Plano;
+            return result;
+        }
+
+        private AssinaturaVINDIRequest SalvarAssinaturaBoleto(Assinatura plano, int clienteID)
+        {
+            var produtos = new List<ItemsVINDI>();
+            produtos.Add(new ItemsVINDI()
+            {
+                product_id = plano.ProdutoId
+            });
+
+            var planoVINDI = new AssinaturaVINDI()
+            {
+                customer_id = clienteID,
+                plan_id = plano.Id,
+                product_items = produtos,
+                payment_method_code = plano.TipoPagamento
+            };
+
+            var url = $"https://sandbox-app.vindi.com.br:443/api/v1/subscriptions";
+
+            var json = JsonConvert.SerializeObject(planoVINDI);
+            var result = servicoApi.PostDataAuth<AssinaturaVINDIRequest>(url, json);
+
+            return result;
         }
 
         public ClienteVINDI SalvarCliente(Cliente cliente)
@@ -83,7 +146,7 @@ namespace VireiContador.Cadastro.Servicos
                 var phones = new List<Phone>();
                 phones.Add(new Phone
                 {
-                    phone_type = "",
+                    phone_type = "mobile",
                     number = cliente.Telefone,
                     extension = ""
                 });
@@ -100,13 +163,14 @@ namespace VireiContador.Cadastro.Servicos
                         zipcode = cliente.CEP,
                         state = cliente.Estado,
                         city = cliente.Cidade,
-                        country = "Brasil",
+                        country = "BR",
                         neighborhood = cliente.Bairro
                     },
                     phones = phones
                 };
 
-                var clienteSalvo = clienteRepositorio.SalvarCliente(cliente);
+
+                //var clienteSalvo = clienteRepositorio.SalvarCliente(cliente);
 
                 var url = $"https://sandbox-app.vindi.com.br:443/api/v1/customers";
 
@@ -123,6 +187,16 @@ namespace VireiContador.Cadastro.Servicos
             }
         }
 
+        private ClienteVINDI ObterCliente(string cpf)
+        {
+
+            var url = $"https://sandbox-app.vindi.com.br:443/api/v1/customers?query=registry_code:" + cpf;
+            var result = servicoApi.GetDataVINDI<ClienteListVINDIResponse>(url);
+            return result?.Customers.FirstOrDefault();
+
+
+        }
+
         public bool SalvarPlano(string email, decimal valor, string plano, string nome)
         {
             try
@@ -136,7 +210,7 @@ namespace VireiContador.Cadastro.Servicos
             }
         }
 
-        public Plano PegarPlano(string email)
+        public Assinatura PegarPlano(string email)
         {
             try
             {

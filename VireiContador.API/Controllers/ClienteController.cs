@@ -20,9 +20,9 @@ namespace VireiContador.API.Controllers
         }
 
         [HttpPost("api/salvar")]
-        public async Task<IActionResult> Salvar([FromBody] SalvarRequest cliente)
+        public async Task<IActionResult> Salvar([FromBody] SalvarRequest salvar)
         {
-            var empresas = clienteServico.Salvar(cliente.Cliente, cliente.Plano, cliente.Fatura);
+            var empresas = clienteServico.Salvar(salvar.Cliente, salvar.Assinatura, salvar.Cartao);
             return await Response(empresas, clienteServico.Notifications);
         }
 

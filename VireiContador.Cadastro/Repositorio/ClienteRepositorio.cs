@@ -56,30 +56,25 @@ namespace VireiContador.Cadastro.Repositorio
                 Bairro = cliente.Bairro,
                 Cidade = cliente.Cidade,
                 Estado = cliente.Estado,
-                TipoPagamento = cliente.TipoPagamento,
                 EmpresaCidade = cliente.EmpresaCidade,
                 AtividadePrimariaId = cliente.AtividadePrimaria.Id,
-                AtividadeSecundariaId = cliente.AtividadeSecundaria.Id,
                 TipoSociedade = cliente.TipoSociedade,
-                AtividadeDesc = cliente.AtividadeDesc,
-                QueroSerCliente = cliente.QueroSerCliente,
-                CartaoCredito = cliente.CartaoCredito.Numero,
-                Cvv = cliente.CartaoCredito.CVV,
-                TitularCartao = cliente.CartaoCredito.TitularCartao,
-                Vencimento = cliente.CartaoCredito.Vencimento
             });
 
             return cliente;
 
         }
 
-        public Plano PegarPlano(string email)
+        public Assinatura PegarPlano(string email)
         {
             var sql = $@"
                 SELECT plano as descricao, valor, nome
-                FROM vireicontador.simulaPlano WHERE email = @Email" ;
+                FROM vireicontador.simulaPlano 
+                WHERE email = @Email
+                ORDER BY email
+                LIMIT 1" ;
 
-            return ExecuteQuery<Plano>(sql, new { Email = email });
+            return ExecuteQuery<Assinatura>(sql, new { Email = email });
         }
 
         public bool SalvarPlano(string email, string nome, decimal valor, string plano)

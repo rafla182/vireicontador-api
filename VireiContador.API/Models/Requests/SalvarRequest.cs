@@ -10,8 +10,8 @@ namespace VireiContador.API.Models.Requests
     {
         public Cliente Cliente { get; set; }
 
-        public Plano Plano { get; set; }
+        public Assinatura Assinatura { get; set; }
 
-        public Fatura Fatura { get; set; }
+        public CartaoCredito Cartao { get; set; }
     }
 }

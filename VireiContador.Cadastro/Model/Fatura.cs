@@ -6,7 +6,7 @@ namespace VireiContador.Cadastro.Model
 {
     public class Fatura
     {
-        public string PaymentMethodCode { get; set; }
+        public string TipoPagamento { get; set; }
         public decimal Valor { get; set; }
         public int PlanoID { get; set; }
         public int ProdutoID { get; set; }
