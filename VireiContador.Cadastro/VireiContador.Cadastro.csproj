@@ -9,6 +9,7 @@
 
   <ItemGroup>
     <PackageReference Include="FluentValidator.Core" Version="1.0.1" />
+    <PackageReference Include="GroupDocs.Signature" Version="19.10.0" />
   </ItemGroup>
 
   <ItemGroup>

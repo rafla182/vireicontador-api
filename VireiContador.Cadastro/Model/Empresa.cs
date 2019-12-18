@@ -16,17 +16,18 @@ namespace VireiContador.Cadastro.Model
         public string Bairro { get; set; }
         public string Logradouro { get; set; }
         public string Numero { get; set; }
-        public string CEP { get; set; }
+        public string Cep { get; set; }
         public string Municipio { get; set; }
         public string Porte { get; set; }
         public string Abertura { get; set; }
         public string NaturezaJuridica { get; set; }
-        public string UF{ get; set; }
+        public string Uf { get; set; }
         public string CapitalSocial { get; set; }
         public string Fantasia { get; set; }
         public string MotivoSituacao { get; set; }
         public string SituacaoEspecial { get; set; }
         public List<Atividade> AtividadePrincipal { get; set; }
+        public List<Atividade> AtividadesSecundarias { get; set; }
     }
 
     public class Atividade

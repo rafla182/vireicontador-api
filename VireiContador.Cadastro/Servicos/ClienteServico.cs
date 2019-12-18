@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using FluentValidator;
+using GroupDocs.Signature;
+using GroupDocs.Signature.Options;
 using Newtonsoft.Json;
 using VireiContador.Cadastro.Model;
 using VireiContador.Cadastro.Repositorio;
@@ -204,11 +207,11 @@ namespace VireiContador.Cadastro.Servicos
 
         }
 
-        public bool SalvarPlano(string email, decimal valor, string plano, string nome)
+        public bool SalvarPlano(string email, decimal valor, string plano, string nome, int funcionarios)
         {
             try
             {
-                return clienteRepositorio.SalvarPlano(email, nome, valor, plano);
+                return clienteRepositorio.SalvarPlano(email, nome, valor, plano, funcionarios);
             }
             catch (Exception ex)
             {
@@ -228,6 +231,24 @@ namespace VireiContador.Cadastro.Servicos
                 AdicionarNotificacao("Erro ao salvar o simula plano." + ex.InnerException);
                 return null;
             }
+        }
+
+        public object Contrato()
+        {
+            using (Signature signature = new Signature("D:\\sample.pdf"))
+            {
+                TextSignOptions options = new TextSignOptions("John Smith")
+                {
+                    // set Text color
+                    ForeColor = Color.Red
+                };
+                // sign document to file
+                signature.Sign("D:\\signed.pdf", options);
+
+                return null;
+            }
+
+
         }
     }
 }

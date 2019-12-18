@@ -110,12 +110,12 @@ namespace VireiContador.Cadastro.Repositorio
             return ExecuteQuery<Assinatura>(sql, new { Email = email });
         }
 
-        public bool SalvarPlano(string email, string nome, decimal valor, string plano)
+        public bool SalvarPlano(string email, string nome, decimal valor, string plano, int funcionarios)
         {
             const string sql = @"
                 INSERT INTO vireicontador.simulaPlano (email, 
-                                     plano, nome, valor, dataCadastro)
-                VALUES (@Email, @Plano, @Nome, @Valor, NOW())
+                                     plano, nome, valor, dataCadastro, funcionarios)
+                VALUES (@Email, @Plano, @Nome, @Valor, NOW(), @Funcionarios)
                 ";
 
             ExecuteQuery<int>(sql, new
@@ -123,7 +123,8 @@ namespace VireiContador.Cadastro.Repositorio
                 Email = email,
                 Nome = nome,
                 Plano = plano,
-                Valor = valor
+                Valor = valor,
+                Funcionarios = funcionarios
             });
 
             return true;

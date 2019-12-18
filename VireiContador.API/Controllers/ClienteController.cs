@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
+using System.Security.Cryptography.Xml;
 using System.Threading.Tasks;
+using GroupDocs.Signature.Options;
 using Microsoft.AspNetCore.Mvc;
 using VireiContador.API.Models.Requests;
 using VireiContador.Cadastro.Model;
@@ -29,7 +32,7 @@ namespace VireiContador.API.Controllers
         [HttpPost("api/hash")]
         public async Task<IActionResult> SalvarPlano([FromBody] HashRequest hash)
         {
-            var empresas = clienteServico.SalvarPlano(hash.Email, hash.Valor, hash.Plano, hash.Nome);
+            var empresas = clienteServico.SalvarPlano(hash.Email, hash.Valor, hash.Plano, hash.Nome, hash.Funcionarios);
             return await Response(empresas, clienteServico.Notifications);
         }
 
@@ -37,6 +40,12 @@ namespace VireiContador.API.Controllers
         public async Task<IActionResult> PegarPlano(string email)
         {
             var empresas = clienteServico.PegarPlano(email);
+            return await Response(empresas, clienteServico.Notifications);
+        }
+        [HttpGet("api/contrato")]
+        public async Task<IActionResult> PegarContrato()
+        {       
+            var empresas = clienteServico.Contrato();
             return await Response(empresas, clienteServico.Notifications);
         }
     }

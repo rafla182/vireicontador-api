@@ -11,5 +11,6 @@ namespace VireiContador.API.Models.Requests
         public decimal Valor { get; set; }
         public string Plano { get; set; }
         public string Nome { get; set; }
+        public int Funcionarios { get; set; }
     }
 }
