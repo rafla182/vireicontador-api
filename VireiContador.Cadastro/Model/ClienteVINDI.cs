@@ -4,7 +4,8 @@ using System.Text;
 
 namespace VireiContador.Cadastro.Model
 {
-    public class ClineteVINDIResult { 
+    public class ClineteVINDIResult
+    {
         public IReadOnlyList<ClienteVINDI> Customers { get; set; }
     }
     public class ClienteVINDI
@@ -50,10 +51,18 @@ namespace VireiContador.Cadastro.Model
     public class ClienteVINDIResponse
     {
         public ClienteVINDI Customer { get; set; }
+        public List<Error> Errors { get; set; }
     }
 
     public class ClienteListVINDIResponse
     {
         public List<ClienteVINDI> Customers { get; set; }
+    }
+
+    public class Error
+    {
+        public string id { get; set; }
+        public string parameter { get; set; }
+        public string message { get; set; }
     }
 }

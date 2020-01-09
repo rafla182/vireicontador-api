@@ -17,9 +17,12 @@ namespace VireiContador.Cadastro.Repositorio
         public Cliente SalvarCliente(Cliente cliente, Assinatura assinatura, CartaoCredito cartao)
         {
             var atividadeSecundaria = "";
-            foreach (var atrividade in cliente.AtividadeSecundaria)
+            if (cliente.AtividadeSecundaria != null)
             {
-                atividadeSecundaria = atividadeSecundaria + atrividade.Codigo + " - " + atrividade.Descricao + ";";
+                foreach (var atrividade in cliente.AtividadeSecundaria)
+                {
+                    atividadeSecundaria = atividadeSecundaria + atrividade.Codigo + " - " + atrividade.Descricao + ";";
+                }
             }
 
             const string sql = @"
@@ -98,10 +101,124 @@ namespace VireiContador.Cadastro.Repositorio
 
         }
 
+        public EmpresaSQL SalvarEmpresa(EmpresaSQL empresa, Assinatura assinatura, CartaoCredito cartao, List<Socio> socios, Competencia competencia)
+        {
+            var atividadeSecundaria = "";
+            if (empresa.AtividadeSecundaria != null)
+            {
+                foreach (var atrividade in empresa.AtividadeSecundaria)
+                {
+                    atividadeSecundaria = atividadeSecundaria + atrividade.Codigo + " - " + atrividade.Descricao + ";";
+                }
+            }
+
+            var sociosArray = "";
+            if (socios != null)
+            {
+                foreach (var socio in socios)
+                {
+                    sociosArray = sociosArray + socio.Nome + "/" + socio.CPF + "/" + socio.Email + "/" + socio.Percentual + "/" + socio.Sexo + "/" + socio.Administrador + ";";
+                }
+            }
+
+            const string sql = @"
+                INSERT INTO empresa (cnpj, nome, 
+                                     email, 
+                                    telefone, 
+                                    cpf, 
+                                    logradouro, 
+                                    numero, 
+                                    complemento, 
+                                    cep, 
+                                    bairro,     
+                                    cidade, 
+                                    estado, 
+                                    dataCadastro, 
+                                    tipoPagamento,
+                                    atividadePrimaria, 
+                                    atividadeSecundaria,
+                                    cartaoCredito,
+                                    cvv,
+                                    titularCartao,
+                                    vencimento,     
+                                    socios, 
+                                    telefone2, 
+                                    razaoSocial,
+                                    nomeFantasia,
+                                    funcionarios,
+                                    regimeTributario,
+                                    inscricaoEstadual, competenciaAno, competenciaMes)
+                VALUES (@Cnpj,
+                        @Nome, 
+                        @Email, 
+                        @Telefone, 
+                        @Cpf, 
+                        @Logradouro, 
+                        @Numero, 
+                        @Complemento, 
+                        @Cep, 
+                        @Bairro, 
+                        @Cidade, 
+                        @Estado, 
+                        NOW(), 
+                        @TipoPagamento, 
+                        @AtividadePrimaria, 
+                        @AtividadeSecundaria, 
+                        @CartaoCredito, 
+                        @Cvv, 
+                        @TitularCartao, 
+                        @Vencimento,
+                        @Socios,
+                        @Telefone2,
+                        @RazaoSocial,
+                        @NomeFantasia,
+                        @Funcionarios,
+                        @RegimeTributario,
+                        @InscricaoEstadual,
+                        @CompetenciaAno,
+                        @CompetenciaMes)
+                ";
+
+            var id = ExecuteQuery<int>(sql, new
+            {
+                Cnpj = empresa.CNPJ,
+                Nome = empresa.Nome,
+                Email = empresa.Email,
+                Telefone = empresa.Telefone,
+                Cpf = empresa.CPF,
+                Logradouro = empresa.Logradouro,
+                Numero = empresa.Numero,
+                Complemento = empresa.Complemento,
+                Cep = empresa.CEP,
+                Bairro = empresa.Bairro,
+                Cidade = empresa.Cidade,
+                Estado = empresa.Estado,
+                TipoPagamento = assinatura.TipoPagamento,
+                AtividadePrimaria = empresa.AtividadePrimaria.Codigo + " - " + empresa.AtividadePrimaria.Descricao,
+                AtividadeSecundaria = atividadeSecundaria,
+                CartaoCredito = cartao.Numero,
+                Cvv = cartao.CVV,
+                TitularCartao = cartao.TitularCartao,
+                Vencimento = cartao.Vencimento,
+                Socios = sociosArray,
+                Telefone2 = empresa.Telefone2,
+                RazaoSocial = empresa.RazaoSocial,
+                NomeFantasia = empresa.NomeFantasia,
+                Funcionarios = empresa.Funcionarios,
+                RegimeTributario = empresa.RegimeTributario,
+                InscricaoEstadual = empresa.InscricaoEstadual,
+                CompetenciaAno = competencia.Ano,
+                CompetenciaMes = competencia.Mes
+            });
+
+            return empresa;
+
+        }
+
         public Assinatura PegarPlano(string email)
         {
             var sql = $@"
-                SELECT plano as descricao, valor, nome
+                SELECT plano as descricao, valor, nome, funcionarios
                 FROM vireicontador.simulaPlano 
                 WHERE email = @Email
                 ORDER BY dataCadastro desc

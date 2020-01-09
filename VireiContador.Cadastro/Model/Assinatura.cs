@@ -12,5 +12,6 @@ namespace VireiContador.Cadastro.Model
         public int Id { get; set; }
         public int ProdutoId { get; set; }
         public string TipoPagamento { get; set; }
+        public int Funcionarios { get; set; }
     }
 }

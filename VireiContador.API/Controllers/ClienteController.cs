@@ -26,27 +26,35 @@ namespace VireiContador.API.Controllers
         public async Task<IActionResult> Salvar([FromBody] SalvarRequest salvar)
         {
             var empresas = clienteServico.Salvar(salvar.Cliente, salvar.Assinatura, salvar.Cartao);
-            return await Response(empresas, clienteServico.Notifications);
+            return await Response(empresas, clienteServico.Notificacoes);
         }
+
+        [HttpPost("api/salvar-migrar")]
+        public async Task<IActionResult> Salvar([FromBody] SalvarMigrarRequest salvar)
+        {
+            var empresas = clienteServico.SalvarMigrar(salvar.Empresa, salvar.Assinatura, salvar.Cartao, salvar.Socios, salvar.Competencia);
+            return await Response(empresas, clienteServico.Notificacoes);
+        }
+
 
         [HttpPost("api/hash")]
         public async Task<IActionResult> SalvarPlano([FromBody] HashRequest hash)
         {
             var empresas = clienteServico.SalvarPlano(hash.Email, hash.Valor, hash.Plano, hash.Nome, hash.Funcionarios);
-            return await Response(empresas, clienteServico.Notifications);
+            return await Response(empresas, clienteServico.Notificacoes);
         }
 
         [HttpGet("api/hash/{email}")]
         public async Task<IActionResult> PegarPlano(string email)
         {
             var empresas = clienteServico.PegarPlano(email);
-            return await Response(empresas, clienteServico.Notifications);
+            return await Response(empresas, clienteServico.Notificacoes);
         }
         [HttpGet("api/contrato")]
         public async Task<IActionResult> PegarContrato()
         {       
             var empresas = clienteServico.Contrato();
-            return await Response(empresas, clienteServico.Notifications);
+            return await Response(empresas, clienteServico.Notificacoes);
         }
     }
 }

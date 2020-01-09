@@ -6,14 +6,17 @@ using VireiContador.Cadastro.Model;
 
 namespace VireiContador.API.Models.Requests
 {
-    public class SalvarRequest
+    public class SalvarMigrarRequest
     {
-        public Cliente Cliente { get; set; }
+
+        public EmpresaSQL Empresa { get; set; }
 
         public Assinatura Assinatura { get; set; }
 
         public CartaoCredito Cartao { get; set; }
 
         public List<Socio> Socios { get; set; }
+
+        public Competencia Competencia { get; set; }
     }
 }

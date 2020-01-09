@@ -55,6 +55,45 @@ namespace VireiContador.Cadastro.Servicos
             }
         }
 
+        public AssinaturaVINDIRequest SalvarMigrar(EmpresaSQL empresa, Assinatura assinatura, CartaoCredito cartao, List<Socio> socios, Competencia competencia)
+        {
+            try
+            {
+                var clienteVINDI = ObterCliente(empresa.Email);
+                var customer = new ClienteVINDI();
+                if (clienteVINDI == null)
+                    customer = SalvarEmpresa(empresa, assinatura, cartao, socios, competencia);
+                else
+                    customer = clienteVINDI;
+
+                var clienteSalvo = clienteRepositorio.SalvarEmpresa(empresa, assinatura, cartao, socios, competencia);
+
+                if (customer != null)
+                {
+                    if (assinatura.TipoPagamento == "credit_card")
+                    {
+                        var profile = SalvarProfile(cartao, customer.id);
+                        var assinaturaRetorno = SalvarAssinatura(assinatura, customer.id, profile.id);
+                        return assinaturaRetorno;
+                    }
+                    else
+                    {
+                        var assinaturaRetorno = SalvarAssinaturaBoleto(assinatura, customer.id);
+                        return assinaturaRetorno;
+                    }
+                }
+
+
+                return null;
+            }
+            catch (Exception ex)
+            {
+                AdicionarNotificacao("Erro ao salvar o cliente.");
+                return null;
+
+            }
+        }
+
         private PerfilPagamentoRetornoVINDI SalvarProfile(CartaoCredito cartao, int clienteID)
         {
             var perfilVINDI = new PerfilPagamentoVINDI()
@@ -166,6 +205,7 @@ namespace VireiContador.Cadastro.Servicos
                 {
                     name = cliente.Nome,
                     email = cliente.Email,
+                    registry_code = cliente.CPF,
                     address = new Address
                     {
                         street = cliente.Logradouro,
@@ -186,6 +226,58 @@ namespace VireiContador.Cadastro.Servicos
 
                 var json = JsonConvert.SerializeObject(customer);
                 var result = servicoApi.PostDataAuth<ClienteVINDIResponse>(url, json);
+
+                return result.Customer;
+
+            }
+            catch (Exception ex)
+            {
+                AdicionarNotificacao("Erro ao salvar o cliente.");
+                return null;
+            }
+        }
+
+        public ClienteVINDI SalvarEmpresa(EmpresaSQL empresa, Assinatura assinatura, CartaoCredito cartao, List<Socio> socios, Competencia competencia)
+        {
+            try
+            {
+                var phones = new List<Phone>();
+                phones.Add(new Phone
+                {
+                    phone_type = "landline",
+                    number = empresa.Telefone,
+                });
+
+                phones.Add(new Phone
+                {
+                    phone_type = "mobile",
+                    number = empresa.Telefone2,
+                });
+
+                var customer = new ClienteVINDI()
+                {
+                    name = empresa.Nome,
+                    email = empresa.Email,
+                    registry_code = empresa.CPF,
+                    phones = phones
+                };
+
+
+                var url = $"https://sandbox-app.vindi.com.br:443/api/v1/customers";
+
+                var json = JsonConvert.SerializeObject(customer);
+                var result = servicoApi.PostDataAuth<ClienteVINDIResponse>(url, json);
+
+                if (result.Errors.Count() > 0)
+                {
+                    var errors = "";
+                    foreach (var item in result.Errors)
+                    {
+                        errors = errors + item.id + " - " + item.message + " - " + item.parameter;
+                        AdicionarNotificacao(errors);
+                        return null;
+                    }
+                }
 
                 return result.Customer;
 
