@@ -176,7 +176,11 @@ namespace VireiContador.Cadastro.Servicos
             var produtos = new List<ItemsVINDI>();
             produtos.Add(new ItemsVINDI()
             {
-                product_id = plano.ProdutoId
+                product_id = plano.ProdutoId,
+                pricing_schema = {
+                    price = plano.Valor,
+                    schema_type = "flat"
+                }
             });
 
             var planoVINDI = new AssinaturaVINDI()
