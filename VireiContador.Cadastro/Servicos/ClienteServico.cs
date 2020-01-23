@@ -142,8 +142,13 @@ namespace VireiContador.Cadastro.Servicos
             var produtos = new List<ItemsVINDI>();
             produtos.Add(new ItemsVINDI()
             {
-                product_id = plano.ProdutoId
+                product_id = plano.ProdutoId,
+                pricing_schema = {
+                    price = plano.Valor,
+                    schema_type = "flat"
+                }
             });
+
 
             var planoVINDI = new AssinaturaVINDI()
             {
@@ -154,7 +159,8 @@ namespace VireiContador.Cadastro.Servicos
                 payment_profile = new PerfilPagamentoAssinaturaVINDI()
                 {
                     id = profileID
-                }
+                },
+
             };
 
             var url = $"https://sandbox-app.vindi.com.br:443/api/v1/subscriptions";

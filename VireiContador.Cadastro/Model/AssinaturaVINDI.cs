@@ -15,7 +15,15 @@ namespace VireiContador.Cadastro.Model
 
     public class ItemsVINDI
     {
+        public PricingVINDI pricing_schema;
+
         public int product_id { get; set; }
+    }
+
+    public class PricingVINDI
+    {
+        public decimal price { get; set; }
+        public string schema_type { get; set; }
     }
 
     public class AssinaturaVINDIRequest
