@@ -177,7 +177,7 @@ namespace VireiContador.Cadastro.Servicos
             produtos.Add(new ItemsVINDI()
             {
                 product_id = plano.ProdutoId,
-                pricing_schema = {
+                pricing_schema = new PricingVINDI() {
                     price = plano.Valor,
                     schema_type = "flat"
                 }
