@@ -106,7 +106,7 @@ namespace VireiContador.Cadastro.Servicos
 
             };
 
-            var url = $"https://sandbox-app.vindi.com.br:443/api/v1/payment_profiles";
+            var url = $"https://app.vindi.com.br:443/api/v1/payment_profiles";
 
             var json = JsonConvert.SerializeObject(perfilVINDI);
             var result = servicoApi.PostDataAuth<PerfilPagamentoVINDIRequest>(url, json);
@@ -163,7 +163,7 @@ namespace VireiContador.Cadastro.Servicos
 
             };
 
-            var url = $"https://sandbox-app.vindi.com.br:443/api/v1/subscriptions";
+            var url = $"https://app.vindi.com.br:443/api/v1/subscriptions";
 
             var json = JsonConvert.SerializeObject(planoVINDI);
             var result = servicoApi.PostDataAuth<AssinaturaVINDIRequest>(url, json);
@@ -191,7 +191,7 @@ namespace VireiContador.Cadastro.Servicos
                 payment_method_code = plano.TipoPagamento
             };
 
-            var url = $"https://sandbox-app.vindi.com.br:443/api/v1/subscriptions";
+            var url = $"https://app.vindi.com.br:443/api/v1/subscriptions";
 
             var json = JsonConvert.SerializeObject(planoVINDI);
             var result = servicoApi.PostDataAuth<AssinaturaVINDIRequest>(url, json);
@@ -232,7 +232,7 @@ namespace VireiContador.Cadastro.Servicos
 
                 var clienteSalvo = clienteRepositorio.SalvarCliente(cliente, assinatura, cartao);
 
-                var url = $"https://sandbox-app.vindi.com.br:443/api/v1/customers";
+                var url = $"https://app.vindi.com.br:443/api/v1/customers";
 
                 var json = JsonConvert.SerializeObject(customer);
                 var result = servicoApi.PostDataAuth<ClienteVINDIResponse>(url, json);
@@ -273,7 +273,7 @@ namespace VireiContador.Cadastro.Servicos
                 };
 
 
-                var url = $"https://sandbox-app.vindi.com.br:443/api/v1/customers";
+                var url = $"https://app.vindi.com.br:443/api/v1/customers";
 
                 var json = JsonConvert.SerializeObject(customer);
                 var result = servicoApi.PostDataAuth<ClienteVINDIResponse>(url, json);
@@ -302,7 +302,7 @@ namespace VireiContador.Cadastro.Servicos
         private ClienteVINDI ObterCliente(string email)
         {
 
-            var url = $"https://sandbox-app.vindi.com.br:443/api/v1/customers?query=email:" + email;
+            var url = $"https://app.vindi.com.br:443/api/v1/customers?query=email:" + email;
             var result = servicoApi.GetDataVINDI<ClienteListVINDIResponse>(url);
             return result?.Customers.FirstOrDefault();
 
