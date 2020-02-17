@@ -91,10 +91,10 @@ namespace VireiContador.Cadastro.Repositorio
                 AtividadePrimaria = cliente.AtividadePrimaria.Codigo + " - " + cliente.AtividadePrimaria.Descricao ,
                 AtividadeSecundaria = atividadeSecundaria,
                 TipoSociedade = cliente.TipoSociedade,
-                CartaoCredito = cartao.Numero,
-                Cvv = cartao.CVV,
-                TitularCartao = cartao.TitularCartao,
-                Vencimento = cartao.Vencimento
+                CartaoCredito = cartao != null ? cartao.Numero : "",
+                Cvv = cartao != null ? cartao.CVV : "",
+                TitularCartao = cartao != null ? cartao.TitularCartao : "",
+                Vencimento = cartao != null ? cartao.Vencimento : ""
             });
 
             return cliente;

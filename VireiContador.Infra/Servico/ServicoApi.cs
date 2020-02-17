@@ -37,7 +37,7 @@ namespace VireiContador.Infra.Servico
 
                 httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", Convert.ToBase64String(
             System.Text.ASCIIEncoding.ASCII.GetBytes(
-               $"dRitjGsM4uNkMr5bUNF2cx5yyL3MWLN004fxcRsmHaw")));
+               $"jJWHmrg564L0bUvJup5ul_eulUBI7sl9VwjqPFwCCW4")));
 
 
                 var response = httpClient.GetAsync(url).Result;
@@ -65,7 +65,7 @@ namespace VireiContador.Infra.Servico
             using (var httpClient = new HttpClient())
             {
                 if(!(string.IsNullOrEmpty(apiKey)))
-                    httpClient.DefaultRequestHeaders.Add("vireicontador-app", "dRitjGsM4uNkMr5bUNF2cx5yyL3MWLN004fxcRsmHaw");
+                    httpClient.DefaultRequestHeaders.Add("app-vireicontador	", "jJWHmrg564L0bUvJup5ul_eulUBI7sl9VwjqPFwCCW4");
 
 
                 httpClient.PostAsync(url, new StringContent(json, Encoding.UTF8, "application/json"));
@@ -117,7 +117,7 @@ namespace VireiContador.Infra.Servico
             {
 
                 httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", Convert.ToBase64String(ASCIIEncoding.ASCII.GetBytes(
-               $"dRitjGsM4uNkMr5bUNF2cx5yyL3MWLN004fxcRsmHaw")));
+               $"jJWHmrg564L0bUvJup5ul_eulUBI7sl9VwjqPFwCCW4")));
 
                 var response = httpClient.PostAsync(url, new StringContent(json, Encoding.UTF8, "application/json")).Result;
                 return JsonConvert.DeserializeObject<T>(response.Content.ReadAsStringAsync().Result, settings);

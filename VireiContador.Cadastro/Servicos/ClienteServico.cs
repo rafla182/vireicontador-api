@@ -177,7 +177,8 @@ namespace VireiContador.Cadastro.Servicos
             produtos.Add(new ItemsVINDI()
             {
                 product_id = plano.ProdutoId,
-                pricing_schema = new PricingVINDI() {
+                pricing_schema = new PricingVINDI()
+                {
                     price = plano.Valor,
                     schema_type = "flat"
                 }
@@ -304,7 +305,11 @@ namespace VireiContador.Cadastro.Servicos
 
             var url = $"https://app.vindi.com.br:443/api/v1/customers?query=email:" + email;
             var result = servicoApi.GetDataVINDI<ClienteListVINDIResponse>(url);
-            return result?.Customers.FirstOrDefault();
+            if (result?.Customers != null)
+            {
+                return result?.Customers.FirstOrDefault();
+            }
+            return null;
 
 
         }
