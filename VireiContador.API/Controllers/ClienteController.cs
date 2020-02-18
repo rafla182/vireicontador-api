@@ -50,10 +50,10 @@ namespace VireiContador.API.Controllers
             var empresas = clienteServico.PegarPlano(email);
             return await Response(empresas, clienteServico.Notificacoes);
         }
-        [HttpGet("api/contrato")]
-        public async Task<IActionResult> PegarContrato()
+        [HttpPost("api/contrato")]
+        public async Task<IActionResult> PegarContrato([FromBody] ContratoRequest contrato)
         {       
-            var empresas = clienteServico.Contrato();
+            var empresas = clienteServico.Contrato(contrato.Contrato, contrato.Cliente);
             return await Response(empresas, clienteServico.Notificacoes);
         }
     }
