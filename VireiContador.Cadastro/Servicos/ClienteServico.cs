@@ -433,7 +433,7 @@ direitos e deveres</strong> ao contratar nosso serviço de contabilidade.</span>
 
             System.Net.Mime.ContentType contentType = new System.Net.Mime.ContentType();
 
-            mailMessage.Attachments.Add(new Attachment(stream, "filename.pdf"));
+            mailMessage.Attachments.Add(new Attachment(stream, "contrato.pdf"));
 
             client.Send(mailMessage);
 
