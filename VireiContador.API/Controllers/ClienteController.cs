@@ -56,5 +56,12 @@ namespace VireiContador.API.Controllers
             var empresas = clienteServico.Contrato(contrato.Contrato, contrato.Cliente);
             return await Response(empresas, clienteServico.Notificacoes);
         }
+
+        [HttpPost("api/migrar-contrato")]
+        public async Task<IActionResult> MigrarContrato([FromBody] MigrarContratoRequest contrato)
+        {
+            var empresas = clienteServico.MigrarContrato(contrato.Contrato, contrato.Empresa);
+            return await Response(empresas, clienteServico.Notificacoes);
+        }
     }
 }
