@@ -152,9 +152,10 @@ namespace VireiContador.Cadastro.Servicos
             produtos.Add(new ItemsVINDI()
             {
                 product_id = plano.ProdutoId,
-                pricing_schema ={
-                    price=plano.Valor,
-                    schema_type="flat"
+                pricing_schema = new PricingVINDI()
+                {
+                    price = plano.Valor,
+                    schema_type = "flat"
                 }
             });
 
@@ -433,7 +434,7 @@ direitos e deveres</strong> ao contratar nosso serviço de contabilidade.</span>
 
             System.Net.Mime.ContentType contentType = new System.Net.Mime.ContentType();
 
-            mailMessage.Attachments.Add(new Attachment(stream, "contrato.pdf"));    
+            mailMessage.Attachments.Add(new Attachment(stream, "contrato.pdf"));
 
             client.Send(mailMessage);
 
