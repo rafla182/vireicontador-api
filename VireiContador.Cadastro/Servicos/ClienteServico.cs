@@ -365,7 +365,15 @@ namespace VireiContador.Cadastro.Servicos
             MailMessage mailMessage = new MailMessage();
             mailMessage.IsBodyHtml = true;
             mailMessage.From = new MailAddress("contato@vireicontador.com.br");
-            mailMessage.To.Add("contato@vireicontador.com.br");
+
+            mailMessage.To.Add(cliente.Email);
+            mailMessage.CC.Add(new MailAddress("contato@vireicontador.com.br"));
+            mailMessage.CC.Add(new MailAddress("comercial.vireicontador@gmail.com"));
+            mailMessage.CC.Add(new MailAddress("comercial@vireicontador.com.br"));
+            mailMessage.CC.Add(new MailAddress("relacionamento@vireicontador.com.br"));
+            mailMessage.CC.Add(new MailAddress("processos@vireicontador.com.br"));
+            
+
             mailMessage.Body = $@"<html>
 
 <body>
@@ -458,7 +466,12 @@ direitos e deveres</strong> ao contratar nosso serviço de contabilidade.</span>
             MailMessage mailMessage = new MailMessage();
             mailMessage.IsBodyHtml = true;
             mailMessage.From = new MailAddress("contato@vireicontador.com.br");
-            mailMessage.To.Add("contato@vireicontador.com.br");
+            mailMessage.To.Add(empresa.Email);
+            mailMessage.CC.Add(new MailAddress("contato@vireicontador.com.br"));
+            mailMessage.CC.Add(new MailAddress("comercial.vireicontador@gmail.com"));
+            mailMessage.CC.Add(new MailAddress("comercial@vireicontador.com.br"));
+            mailMessage.CC.Add(new MailAddress("relacionamento@vireicontador.com.br"));
+            mailMessage.CC.Add(new MailAddress("processos@vireicontador.com.br"));
             mailMessage.Body = $@"<html>
 
 <body>
