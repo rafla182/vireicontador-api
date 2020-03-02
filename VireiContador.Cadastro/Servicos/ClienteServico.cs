@@ -92,6 +92,7 @@ namespace VireiContador.Cadastro.Servicos
                     else
                     {
                         var assinaturaRetorno = SalvarAssinaturaBoleto(assinatura, customer.id);
+                        EnviarDadosEmpresa(empresa, assinatura, socios, competencia);
                         return assinaturaRetorno;
                     }
                 }
