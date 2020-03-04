@@ -890,7 +890,7 @@ Funcionarios: {assinatura.Funcionarios}
 												<span style='font-weight:400;font-size:14px;color:#ffffff'>Mês: {competencia.Mes} 
 
 													<br/>
-Ano: {competencia.Mes}
+Ano: {competencia.Ano}
 
 													<br/>
 												</span>
