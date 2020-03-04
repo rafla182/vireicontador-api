@@ -576,7 +576,6 @@ direitos e deveres</strong> ao contratar nosso serviço de contabilidade.</span>
             mailMessage.IsBodyHtml = true;
             mailMessage.From = new MailAddress("contato@vireicontador.com.br");
 
-            mailMessage.To.Add(new MailAddress("contato@vireicontador.com.br"));
             mailMessage.CC.Add(new MailAddress("contato@vireicontador.com.br"));
             mailMessage.CC.Add(new MailAddress("comercial.vireicontador@gmail.com"));
             mailMessage.CC.Add(new MailAddress("comercial@vireicontador.com.br"));
@@ -676,9 +675,9 @@ Descrição: {assinatura.Descricao}
 Valor: {assinatura.Valor}
 
 													<br/>
-Tipo Pagamento: {assinatura.TipoPagamento}
+Tipo Pagamento: {(assinatura.TipoPagamento == "bank_slip" ? "Boleto" : "Cartão de Crédito")}
 
-													<br/>
+                                                    < br/>
 Funcionarios: {assinatura.Funcionarios}
 
 													<br/>
@@ -769,7 +768,6 @@ Funcionarios: {assinatura.Funcionarios}
             mailMessage.From = new MailAddress("contato@vireicontador.com.br");
 
             mailMessage.To.Add(new MailAddress("contato@vireicontador.com.br"));
-            mailMessage.CC.Add(new MailAddress("contato@vireicontador.com.br"));
             mailMessage.CC.Add(new MailAddress("comercial.vireicontador@gmail.com"));
             mailMessage.CC.Add(new MailAddress("comercial@vireicontador.com.br"));
             mailMessage.CC.Add(new MailAddress("relacionamento@vireicontador.com.br"));
@@ -870,7 +868,7 @@ Descrição: {assinatura.Descricao}
 Valor: {assinatura.Valor}
 
 													<br/>
-Tipo Pagamento: {assinatura.TipoPagamento}
+Tipo Pagamento: {(assinatura.TipoPagamento == "bank_slip" ? "Boleto" : "Cartão de Crédito")}
 
 													<br/>
 Funcionarios: {assinatura.Funcionarios}
