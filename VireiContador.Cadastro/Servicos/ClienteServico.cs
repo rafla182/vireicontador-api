@@ -1,25 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Mail;
-using System.Reflection.Metadata;
-using System.Text;
-using FluentValidator;
-using GroupDocs.Signature;
-using GroupDocs.Signature.Options;
-using iTextSharp.text;
-using iTextSharp.text.html.simpleparser;
-using iTextSharp.text.pdf;
 using Newtonsoft.Json;
 using VireiContador.Cadastro.Model;
 using VireiContador.Cadastro.Repositorio;
-using VireiContador.Infra.Models;
 using VireiContador.Infra.Notificacoes;
 using VireiContador.Infra.Servico;
-using Document = iTextSharp.text.Document;
 
 namespace VireiContador.Cadastro.Servicos
 {
@@ -34,78 +23,57 @@ namespace VireiContador.Cadastro.Servicos
         }
         public AssinaturaVINDIRequest Salvar(Cliente cliente, Assinatura assinatura, CartaoCredito cartao)
         {
-            try
+            var clienteVINDI = ObterCliente(cliente.Email);
+            var customer = new ClienteVINDI();
+            if (clienteVINDI == null)
+                customer = SalvarCliente(cliente, assinatura, cartao);
+            else
+                customer = clienteVINDI;
+
+            if (assinatura.TipoPagamento == "credit_card")
             {
-                var clienteVINDI = ObterCliente(cliente.Email);
-                var customer = new ClienteVINDI();
-                if (clienteVINDI == null)
-                    customer = SalvarCliente(cliente, assinatura, cartao);
-                else
-                    customer = clienteVINDI;
+                var profile = SalvarProfile(cartao, customer.id);
+                var assinaturaRetorno = SalvarAssinatura(assinatura, customer.id, profile.id);
 
-                if (assinatura.TipoPagamento == "credit_card")
-                {
-                    var profile = SalvarProfile(cartao, customer.id);
-                    var assinaturaRetorno = SalvarAssinatura(assinatura, customer.id, profile.id);
-
-                    EnviarDadosCliente(cliente, assinatura);
-                    return assinaturaRetorno;
-                }
-                else
-                {
-                    var assinaturaRetorno = SalvarAssinaturaBoleto(assinatura, customer.id);
-                    EnviarDadosCliente(cliente, assinatura);
-                    return assinaturaRetorno;
-                }
+                EnviarDadosCliente(cliente, assinatura);
+                return assinaturaRetorno;
             }
-            catch (Exception ex)
+            else
             {
-                AdicionarNotificacao("Erro ao salvar o cliente.");
-                return null;
-
+                var assinaturaRetorno = SalvarAssinaturaBoleto(assinatura, customer.id);
+                EnviarDadosCliente(cliente, assinatura);
+                return assinaturaRetorno;
             }
         }
 
         public AssinaturaVINDIRequest SalvarMigrar(EmpresaSQL empresa, Assinatura assinatura, CartaoCredito cartao, List<Socio> socios, Competencia competencia)
         {
-            try
+            var clienteVINDI = ObterCliente(empresa.Email);
+            
+            ClienteVINDI customer;
+            
+            customer = clienteVINDI ?? SalvarEmpresa(empresa, assinatura, cartao, socios, competencia);
+
+            if (customer != null)
             {
-                var clienteVINDI = ObterCliente(empresa.Email);
-                var customer = new ClienteVINDI();
-                if (clienteVINDI == null)
-                    customer = SalvarEmpresa(empresa, assinatura, cartao, socios, competencia);
-                else
-                    customer = clienteVINDI;
-
-                var clienteSalvo = clienteRepositorio.SalvarEmpresa(empresa, assinatura, cartao, socios, competencia);
-
-                if (customer != null)
+                if (assinatura.TipoPagamento == "credit_card")
                 {
-                    if (assinatura.TipoPagamento == "credit_card")
-                    {
-                        var profile = SalvarProfile(cartao, customer.id);
-                        var assinaturaRetorno = SalvarAssinatura(assinatura, customer.id, profile.id);
-                        EnviarDadosEmpresa(empresa, assinatura, socios, competencia);
+                    var profile = SalvarProfile(cartao, customer.id);
+                    var assinaturaRetorno = SalvarAssinatura(assinatura, customer.id, profile.id);
+                    EnviarDadosEmpresa(empresa, assinatura, socios, competencia);
 
-                        return assinaturaRetorno;
-                    }
-                    else
-                    {
-                        var assinaturaRetorno = SalvarAssinaturaBoleto(assinatura, customer.id);
-                        EnviarDadosEmpresa(empresa, assinatura, socios, competencia);
-                        return assinaturaRetorno;
-                    }
+                    return assinaturaRetorno;
                 }
-
-
-                return null;
+                else
+                {
+                    var assinaturaRetorno = SalvarAssinaturaBoleto(assinatura, customer.id);
+                    EnviarDadosEmpresa(empresa, assinatura, socios, competencia);
+                    return assinaturaRetorno;
+                }
             }
-            catch (Exception ex)
-            {
-                AdicionarNotificacao("Erro ao salvar o cliente.");
-                return null;
 
-            }
+
+            return null;
         }
 
         private PerfilPagamentoRetornoVINDI SalvarProfile(CartaoCredito cartao, int clienteID)
@@ -217,102 +185,99 @@ namespace VireiContador.Cadastro.Servicos
 
         public ClienteVINDI SalvarCliente(Cliente cliente, Assinatura assinatura, CartaoCredito cartao)
         {
-            try
+            var phones = new List<Phone>();
+            phones.Add(new Phone
             {
-                var phones = new List<Phone>();
-                phones.Add(new Phone
-                {
-                    phone_type = "mobile",
-                    number = cliente.Telefone,
-                    extension = ""
-                });
+                phone_type = "mobile",
+                number = cliente.Telefone,
+                extension = ""
+            });
 
-                var customer = new ClienteVINDI()
-                {
-                    name = cliente.Nome,
-                    email = cliente.Email,
-                    registry_code = cliente.CPF,
-                    address = new Address
-                    {
-                        street = cliente.Logradouro,
-                        number = cliente.Numero,
-                        additional_details = cliente.Complemento,
-                        zipcode = cliente.CEP,
-                        state = cliente.Estado,
-                        city = cliente.Cidade,
-                        country = "BR",
-                        neighborhood = cliente.Bairro
-                    },
-                    phones = phones
-                };
-
-                var clienteSalvo = clienteRepositorio.SalvarCliente(cliente, assinatura, cartao);
-
-                var url = $"https://app.vindi.com.br:443/api/v1/customers";
-
-                var json = JsonConvert.SerializeObject(customer);
-                var result = servicoApi.PostDataAuth<ClienteVINDIResponse>(url, json);
-
-                return result.Customer;
-
-            }
-            catch (Exception ex)
+            var customer = new ClienteVINDI()
             {
-                AdicionarNotificacao("Erro ao salvar o cliente.");
-                return null;
+                name = cliente.Nome,
+                email = cliente.Email,
+                registry_code = cliente.CPF,
+                address = new Address
+                {
+                    street = cliente.Logradouro,
+                    number = cliente.Numero,
+                    additional_details = cliente.Complemento,
+                    zipcode = cliente.CEP,
+                    state = cliente.Estado,
+                    city = cliente.Cidade,
+                    country = "BR",
+                    neighborhood = cliente.Bairro
+                },
+                phones = phones
+            };
+
+
+            var url = $"https://app.vindi.com.br:443/api/v1/customers";
+
+            var json = JsonConvert.SerializeObject(customer);
+            var result = servicoApi.PostDataAuth<ClienteVINDIResponse>(url, json);
+
+            if (result.Errors.Any())
+            {
+                var errors = "";
+                foreach (var item in result.Errors)
+                {
+                    errors = errors + item.id + " - " + item.message + " - " + item.parameter;
+                    AdicionarNotificacao(errors);
+                    return null;
+                }
             }
+
+            clienteRepositorio.SalvarCliente(cliente, assinatura, cartao);
+            return result.Customer;
+
         }
 
         public ClienteVINDI SalvarEmpresa(EmpresaSQL empresa, Assinatura assinatura, CartaoCredito cartao, List<Socio> socios, Competencia competencia)
         {
-            try
+            var phones = new List<Phone>();
+            phones.Add(new Phone
             {
-                var phones = new List<Phone>();
-                phones.Add(new Phone
+                phone_type = "landline",
+                number = empresa.Telefone,
+            });
+
+            phones.Add(new Phone
+            {
+                phone_type = "mobile",
+                number = empresa.Telefone2,
+            });
+
+            var customer = new ClienteVINDI()
+            {
+                name = empresa.Nome,
+                email = empresa.Email,
+                registry_code = empresa.CPF,
+                phones = phones
+            };
+
+
+            var url = $"https://app.vindi.com.br:443/api/v1/customers";
+
+            var json = JsonConvert.SerializeObject(customer);
+            var result = servicoApi.PostDataAuth<ClienteVINDIResponse>(url, json);
+
+            if (result.Errors.Any())
+            {
+                var errors = "";
+                foreach (var item in result.Errors)
                 {
-                    phone_type = "landline",
-                    number = empresa.Telefone,
-                });
-
-                phones.Add(new Phone
-                {
-                    phone_type = "mobile",
-                    number = empresa.Telefone2,
-                });
-
-                var customer = new ClienteVINDI()
-                {
-                    name = empresa.Nome,
-                    email = empresa.Email,
-                    registry_code = empresa.CPF,
-                    phones = phones
-                };
-
-
-                var url = $"https://app.vindi.com.br:443/api/v1/customers";
-
-                var json = JsonConvert.SerializeObject(customer);
-                var result = servicoApi.PostDataAuth<ClienteVINDIResponse>(url, json);
-
-                if (result.Errors.Count() > 0)
-                {
-                    var errors = "";
-                    foreach (var item in result.Errors)
-                    {
-                        errors = errors + item.id + " - " + item.message + " - " + item.parameter;
-                        AdicionarNotificacao(errors);
-                        return null;
-                    }
+                    errors = errors + item.id + " - " + item.message + " - " + item.parameter;
+                    AdicionarNotificacao(errors);
                 }
 
-                return result.Customer;
-
-            }
-            catch (Exception ex)
-            {
-                AdicionarNotificacao("Erro ao salvar o cliente.");
                 return null;
             }
+
+            clienteRepositorio.SalvarEmpresa(empresa, assinatura, cartao, socios, competencia);
+            return result.Customer;
+
         }
 
         private ClienteVINDI ObterCliente(string email)
@@ -320,13 +285,7 @@ namespace VireiContador.Cadastro.Servicos
 
             var url = $"https://app.vindi.com.br:443/api/v1/customers?query=email:" + email;
             var result = servicoApi.GetDataVINDI<ClienteListVINDIResponse>(url);
-            if (result?.Customers != null)
-            {
-                return result?.Customers.FirstOrDefault();
-            }
-            return null;
-
-
+            return result?.Customers?.FirstOrDefault();
         }
 
         public bool SalvarPlano(string email, decimal valor, string plano, string nome, int funcionarios)
