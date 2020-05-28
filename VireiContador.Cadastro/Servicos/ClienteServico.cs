@@ -30,6 +30,9 @@ namespace VireiContador.Cadastro.Servicos
             else
                 customer = clienteVINDI;
 
+            if (customer == null)
+                return null;
+
             if (assinatura.TipoPagamento == "credit_card")
             {
                 var profile = SalvarProfile(cartao, customer.id);
@@ -225,8 +228,9 @@ namespace VireiContador.Cadastro.Servicos
                 {
                     errors = errors + item.id + " - " + item.message + " - " + item.parameter;
                     AdicionarNotificacao(errors);
-                    return null;
                 }
+
+                return null;
             }
 
             clienteRepositorio.SalvarCliente(cliente, assinatura, cartao);
