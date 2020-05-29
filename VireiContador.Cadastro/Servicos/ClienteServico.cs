@@ -192,7 +192,7 @@ namespace VireiContador.Cadastro.Servicos
             phones.Add(new Phone
             {
                 phone_type = "mobile",
-                number = cliente.Telefone,
+                number = "55" + cliente.Telefone,
                 extension = ""
             });
 
