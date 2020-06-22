@@ -244,20 +244,20 @@ namespace VireiContador.Cadastro.Servicos
             phones.Add(new Phone
             {
                 phone_type = "landline",
-                number = empresa.Telefone,
+                number = "55" + empresa.Telefone
             });
 
             phones.Add(new Phone
             {
                 phone_type = "mobile",
-                number = empresa.Telefone2,
+                number = "55" + empresa.Telefone2,
             });
 
             var customer = new ClienteVINDI()
             {
-                name = empresa.Nome,
+                name = empresa.RazaoSocial,
                 email = empresa.Email,
-                registry_code = empresa.CPF,
+                registry_code = empresa.CNPJ,
                 phones = phones
             };
 
